@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+.groupButton {
+    width: 175px;
+    height: 35px;
+    background-color: #4F6ACA;
+    margin-top: 7%;
+    border: none;
+    border-radius: 35px;
+}
+
+.Login {
+    width: 100px;
+    height: 35px;
+    margin-right: 35px;
+    margin-top: 35px;
+    float: right;
+    background-color: #45A767;
+    border: none;
+}
