@@ -1,9 +1,29 @@
-<button (click)="onClick($event)" class="Login">Register</button>
-<button (click)="onClick($event)" class="Login">Sign in</button>
+<html>
 
-<br><br><br><br>
-<h1>GroupeD</h1>
+    <head>
+        <title>GroupeD</title>
+        <meta charset="utf-8">
+    </head>
 
-<button (click)="onClick($event)" class="groupButton" style="margin-left: 35%">Quick Group</button>
-<button (click)="onClick($event)" class="groupButton" style="margin-left: 15%">Create Group</button>
-<button (click)="onClick($event)" class="groupButton" style="margin-top: 8%; margin-left: 47%;">Join Group</button>
+    <body>
+        <div class="header">
+            <div class="inner_header">
+                <div class="logo_container">
+                    <h1>Groupe<span>D</span></h1>
+                </div>
+        
+                <ul class="navigation">
+                    <a href=""><li>Sign in</li></a>
+                    <a href=""><li>Register</li></a>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="group_button">
+            <button title="Create a group" (click)="onClick($event)">Create Group</button>
+            <button title="Join a group" (click)="onClick($event)">Join Group</button>
+            <button title="Join a group quickly" (click)="onClick($event)">Quick Group</button>
+        </div>
+    </body>
+
+</html>
