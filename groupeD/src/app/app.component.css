@@ -11,12 +11,27 @@ body {
     height: 100%;
     top: 0%;
     left: 0%;
-    background-color: #E8CB61;
+    background: linear-gradient(-45deg, #FA6B0F, #DE7C0B, #F59F00, #DEA90B, #FFD802);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 35px;
+    background-color: yellow;
+    height: 5%;
+    opacity: 0.5;
+    font-size: 18px;
+    font-family: verdana;
+    border: 2px solid black;
 }
 
 .header {
     width: 100%;
-    height: 80px;
+    height: 90px;
     display: block;
     background-color: #101010;
 }
@@ -40,7 +55,7 @@ body {
     display: table-cell;
     vertical-align: middle;
     font-family: verdana;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 200;
 }
 
@@ -71,7 +86,7 @@ body {
     height: 100%;
     color: #F7D259;
     font-family: verdana;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .navigation a li:hover {
@@ -95,5 +110,4 @@ body {
 .group_button button:hover {
     color: yellow;
     background-color: grey;
-    box-shadow: 0 0 10px grey, 0 0 40px grey, 0 0 80px grey;
 }
