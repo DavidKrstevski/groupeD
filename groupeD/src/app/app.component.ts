@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,6 @@ import { Component, EventEmitter } from '@angular/core';
 export class AppComponent {
   title = 'groupeD';
 
-  onClick(event: Event) {
-    
-  }
 
   constructor() {
 
