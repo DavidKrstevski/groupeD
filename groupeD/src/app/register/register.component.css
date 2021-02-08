@@ -43,8 +43,15 @@ body {
 
 .box h1 {
     color: #DBCDC5;
-    text-transform: uppercase;
     font-weight: 500;
+}
+
+.box h1 span {
+    color: #E3AD50;
+}
+
+.box h1 span span {
+    color: #DEAD0D;
 }
 
 .box input[type = "text"],.box input[type = "password"] {
