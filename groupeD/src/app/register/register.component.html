@@ -1,11 +1,36 @@
 <body>
 
-    <form class="box" action="register.component.html" method="post">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="box" action="register.component.html" method="post">
         <h1>Create a <span>Groupe<span>D</span></span> Account</h1>
-        <input type="text" name="" placeholder="Username">
-        <input type="password" name="" placeholder="Password">
-        <input type="password" name="" placeholder="Confirm Password">
-        <input type="submit" name="" value="Register">
+        <p class="test">username value testing: {{ username.value }}</p>
+        <input 
+            type="text" 
+            name="username" 
+            ngModel 
+            required 
+            #username="ngModel" 
+            placeholder="Username"
+            maxlength="14"
+            >           
+        <input 
+            type="password" 
+            name="password" 
+            ngModel 
+            required 
+            #password="ngModel" 
+            placeholder="Password"
+            maxlength="20"
+            >
+        <input 
+            type="password" 
+            name="confirmPassword" 
+            ngModel 
+            required 
+            #confirmPassword="ngModel" 
+            placeholder="Confirm Password"
+            maxlength="20"
+            >
+        <a class="register" (click)="onRegister()" href="home">submit</a>
     </form>
     
 </body>
