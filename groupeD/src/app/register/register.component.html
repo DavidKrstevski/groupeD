@@ -1,6 +1,6 @@
 <body>
 
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="box" action="register.component.html" method="post">
+    <form class="box" action="register.component.html" method="post">
         <h1>Create a <span>Groupe<span>D</span></span> Account</h1>
         <p class="test">username value testing: {{ username.value }}</p>
         <input 
@@ -11,6 +11,7 @@
             #username="ngModel" 
             placeholder="Username"
             maxlength="14"
+            autocomplete="off"
             >           
         <input 
             type="password" 
@@ -20,6 +21,7 @@
             #password="ngModel" 
             placeholder="Password"
             maxlength="20"
+            autocomplete="off"
             >
         <input 
             type="password" 
@@ -29,8 +31,9 @@
             #confirmPassword="ngModel" 
             placeholder="Confirm Password"
             maxlength="20"
+            autocomplete="off"
             >
-        <a class="register" (click)="onRegister()" href="home">submit</a>
+        <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)" href="home">submit</a>
     </form>
     
 </body>

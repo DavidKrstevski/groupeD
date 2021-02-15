@@ -8,18 +8,29 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   
+  myUsername = "";
+  password = "";
+  confirmPassword = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onRegister(){
+  onRegister(username: string, password: string, confirmPassword: string) {
+    this.myUsername = username;
+    this.password = password;
+    this.confirmPassword = confirmPassword;
+
+    this.dataToJSON();
+    this.postData();
+  }
+
+  dataToJSON() {
 
   }
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);
-    console.log(f.valid);
+  postData() {
+
   }
 }

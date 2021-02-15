@@ -8,19 +8,27 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  username = "";
+  myUsername = "";
+  password = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onLogin() {
+  onLogin(username: string, password: string) {
+    this.myUsername = username;
+    this.password = password;
+
+    this.dataToJSON();
+    this.postData();
+  }
+
+  dataToJSON() {
 
   }
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);
-    console.log(f.valid);
+  postData() {
+
   }
 }
