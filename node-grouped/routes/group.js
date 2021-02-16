@@ -5,8 +5,8 @@ const database = require('../database');
 const Group = require('../database').Group;
 
 router.post('/create',(req,res,next) => {
-    var userId = req.body._id;
-    var newUserList = [];
+    let userId = req.body._id;
+    let newUserList = [];
     newUserList.push(userId);
     console.log("creating code");
     createNewGroupCode().then(codeResult => {
@@ -21,13 +21,17 @@ router.post('/create',(req,res,next) => {
     res.send('created group');
 });
 
-router.get('/join',(req,res,next) => {
+router.put('/join',(req,res,next) => {
+    database.getGroupByCode(req.body.groupCode).then(group => {
+        group.userList.push(req.body._id);
+        group.save();
+    });
     res.send('joined group');
 });
 
 async function createNewGroupCode(){
-    var code = getRandomInt(10000,100000);
-    var group = await database.getGroupByCode(code);
+    let code = getRandomInt(10000,100000);
+    let group = await database.getGroupByCode(code);
     if(group !== null){
         return createNewGroupCode();
     }
