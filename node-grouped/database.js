@@ -21,7 +21,23 @@ const personSchema = new Schema({
     } //Ids
 });
 
+const groupSchema = new Schema({
+    joinCode:{
+        type: String,
+        required:true
+    },
+    userList: {
+        type: [String],
+        required: true
+    },
+    adminList: {
+        type: [String],
+        required: true
+    }
+});
+
 const Person = mongoose.model('Person', personSchema)
+const Group = mongoose.model('Group', groupSchema)
 
 async function connect(){
     try{
@@ -36,9 +52,19 @@ async function connect(){
 //Save
 async function savePerson(personData){
     try{
-        personData.password = _hash(personData.password)
+        personData.password = await _hash(personData.password)
         let newPerson = new Person(personData)
         await newPerson.save()
+    }catch (e) {
+        console.log("Failed to save: " + e)
+    }
+}
+
+async function createGroup(groupData){
+    try{
+        let newGroup = new Group(groupData)
+        console.log(newGroup);
+        await newGroup.save()
     }catch (e) {
         console.log("Failed to save: " + e)
     }
@@ -50,6 +76,8 @@ async function checkLogin(personData){
         let query = Person.findOne({username:personData.username})
         //query.select("name", "age")
         let result = await query.exec()
+        if(!result)
+            return false;
         let compare = await bcrypt.compare(personData.password, result.password);
         return compare;
     }catch (e) {
@@ -62,6 +90,7 @@ async function getPersonByName(personName){
         let query = Person.findOne({username:personName})
         //query.select("name", "age")
         let result = await query.exec()
+        return result;
     }catch (e) {
         console.log("Failed to find: " + e)
     }
@@ -76,7 +105,14 @@ async function getPersonById(personId){
         console.log("Failed to find: " + e)
     }
 }
-
+async function getGroupByCode(groupCode){
+    try{
+        let result = await Group.findOne({groupCode:groupCode})
+        return result;
+    }catch (e) {
+        console.log("Failed to find: " + e)
+    }
+}
 //Delete
 async function deletePersonByName(personName){
     try{
@@ -119,6 +155,7 @@ async function updatePersonById(personId, update){
     }
 }
 
+
 async function _hash(password){
     try{
         let salt = await bcrypt.genSalt(saltRounds)
@@ -131,6 +168,7 @@ async function _hash(password){
 
 module.exports = {
     Person,
+    Group,
     connect,
     savePerson,
     getPersonByName,
@@ -139,6 +177,8 @@ module.exports = {
     deletePersonById,
     updatePersonByName,
     updatePersonById,
+    createGroup,
+    getGroupByCode,
     checkLogin
 }
 

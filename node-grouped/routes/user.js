@@ -20,17 +20,22 @@ router.get('/login',(req,res,next) => {
     };
     database.checkLogin(newUser).then(r =>{
             if(r)
-                res.send('true')
+                console.log('true')
             else
-                res.send('false')
+                console.log('false')
     });
-    res.send('REGISTER');
+    res.send('LOGGED IN');
 });
 
 router.get('/profile',(req,res,next) => {
-    database.getPersonByName(req.body.username).then(r => res.send(r))
-    res.send('PROFILE');
+    database.getPersonByName(req.body.username).then(r => {
+        var sendingObject = {
+            username:r.username,
+            groups:r.groups,
+        }
+        res.send(sendingObject);
+        console.log(r)
+    })
 });
-
 
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const user = require('./routes/user');
+const group = require('./routes/group');
 const database = require('./database');
 
 database.connect();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/user',user);
+app.use('/group',group);
 
 app.get('/', (req,res) => {
     res.send('Invalid Enpoint');
