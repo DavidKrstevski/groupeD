@@ -9,8 +9,7 @@ router.post('/register',(req,res,next) => {
       username: req.body.username,
       password: req.body.password,
     };
-    database.savePerson(newUser);
-    res.send('REGISTER');
+    database.savePerson(newUser).then(r => res.send(r));
 });
 
 router.get('/login',(req,res,next) => {
@@ -20,21 +19,19 @@ router.get('/login',(req,res,next) => {
     };
     database.checkLogin(newUser).then(r =>{
             if(r)
-                console.log('true')
+                res.send(true);
             else
-                console.log('false')
+                res.send(false);
     });
-    res.send('LOGGED IN');
 });
 
 router.get('/profile',(req,res,next) => {
     database.getPersonByName(req.body.username).then(r => {
-        var sendingObject = {
+        let sendingObject = {
             username:r.username,
             groups:r.groups,
         }
         res.send(sendingObject);
-        console.log(r)
     })
 });
 

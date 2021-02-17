@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { Schema } = mongoose;
 
-const connectionString = "mongodb+srv://admin:admin@groupedcluster.qjwbz.mongodb.net/GroupedCluster?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv://admin:admin@groupedcluster.qjwbz.mongodb.net/GroupedCluster?retryWrites=true&w=majority";
 
 //Schema and Models
 const personSchema = new Schema({
@@ -36,133 +36,151 @@ const groupSchema = new Schema({
     }
 });
 
-const Person = mongoose.model('Person', personSchema)
-const Group = mongoose.model('Group', groupSchema)
+const Person = mongoose.model('Person', personSchema);
+const Group = mongoose.model('Group', groupSchema);
 
 async function connect(){
     try{
         console.log("Trying to connect");
-        await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+        await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log("CONNECTED");
     }catch (e) {
-        console.log("Connection Failed: " + e)
+        console.log("Connection Failed: " + e);
     }
 }
 
 //Save
 async function savePerson(personData){
     try{
-        personData.password = await _hash(personData.password)
-        let newPerson = new Person(personData)
-        await newPerson.save()
+        let exists = await getPersonByName(personData.username);
+        if(exists !== null)
+            return false;
+        personData.password = await _hash(personData.password);
+        let newPerson = new Person(personData);
+        await newPerson.save();
+        return true;
     }catch (e) {
-        console.log("Failed to save: " + e)
+        console.log("Failed to save: " + e);
+        return false;
     }
 }
 
 async function createGroup(groupData){
     try{
-        let newGroup = new Group(groupData)
+        let newGroup = new Group(groupData);
         console.log(newGroup);
-        await newGroup.save()
+        await newGroup.save();
+        return true;
     }catch (e) {
-        console.log("Failed to save: " + e)
+        console.log("Failed to save: " + e);
+        return false;
     }
 }
 
 //Get
 async function checkLogin(personData){
     try{
-        let query = Person.findOne({username:personData.username})
-        //query.select("name", "age")
-        let result = await query.exec()
+        let query = Person.findOne({username:personData.username});
+        let result = await query.exec();
         if(!result)
             return false;
         let compare = await bcrypt.compare(personData.password, result.password);
         return compare;
     }catch (e) {
-        console.log("Failed to find: " + e)
+        console.log("Failed to find: " + e);
+        return false;
     }
 }
 
 async function getPersonByName(personName){
     try{
-        let query = Person.findOne({username:personName})
-        //query.select("name", "age")
-        let result = await query.exec()
+        let query = Person.findOne({username:personName});
+        //query.select("name", "age");
+        let result = await query.exec();
         return result;
     }catch (e) {
-        console.log("Failed to find: " + e)
+        console.log("Failed to find: " + e);
+        return false;
     }
 }
 
 async function getPersonById(personId){
     try{
-        let query = Person.findOne({_id:personId})
-        //query.select("name", "age")
-        let result = await query.exec()
+        let query = Person.findOne({_id:personId});
+        let result = await query.exec();
     }catch (e) {
-        console.log("Failed to find: " + e)
+        console.log("Failed to find: " + e);
+        return false;
     }
 }
 async function getGroupByCode(groupCode){
     try{
-        let result = await Group.findOne({groupCode:groupCode})
+        let result = await Group.findOne({groupCode:groupCode});
         return result;
     }catch (e) {
-        console.log("Failed to find: " + e)
+        console.log("Failed to find: " + e);
+        return false;
     }
 }
 //Delete
 async function deletePersonByName(personName){
     try{
-        let result = await Person.deleteOne({username:personName})
+        let result = await Person.deleteOne({username:personName});
         if(result.deletedCount === 0)
-            console.log(personName + " does not exist")
+            return false;
+        return true;
     }catch (e) {
-        console.log("Failed to delete: " + e)
+        console.log("Failed to delete: " + e);
+        return false;
     }
 }
 
 async function deletePersonById(personId){
     try{
-        let result = await Person.deleteOne({_id:personId})
+        let result = await Person.deleteOne({_id:personId});
         if(result.deletedCount === 0)
-            console.log("User with Id:" + personId + " does not exist")
+            return false;
+        return true;
     }catch (e) {
-        console.log("Failed to delete: " + e)
+        console.log("Failed to delete: " + e);
+        return false;
     }
 }
 
 //Update
 async function updatePersonByName(personName, update){
     try{
-        let result = await Person.updateOne({username:personName}, update)
+        let result = await Person.updateOne({username:personName}, update);
         if(result.nModified === 0)
-            console.log(personName + " does not exist")
+            return false;
+        return true;
     }catch (e) {
-        console.log("Failed to update: " + e)
+        console.log("Failed to update: " + e);
+        return false;
     }
 }
 
-async function updatePersonById(personId, update){
+async function updateGroupList(groupCode, update){
     try{
-        let result = await Person.updateOne({_id:personId}, update)
+        let result = await Group.updateOne({groupCode:groupCode}, update);
         if(result.nModified === 0)
-            console.log("User with Id:" + personId + " does not exist")
+            return false;
+        return true;
     }catch (e) {
-        console.log("Failed to update: " + e)
+        console.log("Failed to update: " + e);
+        return false;
     }
 }
 
 
 async function _hash(password){
     try{
-        let salt = await bcrypt.genSalt(saltRounds)
-        let hash = await bcrypt.hash(password, salt)
-        return hash
+        let salt = await bcrypt.genSalt(saltRounds);
+        let hash = await bcrypt.hash(password, salt);
+        return hash;
     }catch (e) {
-        console.log("Failed to hash: " + e)
+        console.log("Failed to hash: " + e);
+        return false;
     }
 }
 
@@ -171,15 +189,15 @@ module.exports = {
     Group,
     connect,
     savePerson,
+    createGroup,
+    checkLogin,
     getPersonByName,
     getPersonById,
+    getGroupByCode,
     deletePersonByName,
     deletePersonById,
     updatePersonByName,
-    updatePersonById,
-    createGroup,
-    getGroupByCode,
-    checkLogin
+    updateGroupList
 }
 
 

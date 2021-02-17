@@ -8,25 +8,21 @@ router.post('/create',(req,res,next) => {
     let userId = req.body._id;
     let newUserList = [];
     newUserList.push(userId);
-    console.log("creating code");
     createNewGroupCode().then(codeResult => {
         let newGroup = {
             joinCode: codeResult,
             userList: newUserList,
             adminList: newUserList
         };
-        console.log("creating group");
-        database.createGroup(newGroup);
+        database.createGroup(newGroup).then(r => res.send(r));
     });
-    res.send('created group');
 });
 
 router.put('/join',(req,res,next) => {
     database.getGroupByCode(req.body.groupCode).then(group => {
         group.userList.push(req.body._id);
-        group.save();
+        database.updateGroupList(req.body.groupCode, req.body).then(r => res.send(r))
     });
-    res.send('joined group');
 });
 
 async function createNewGroupCode(){
