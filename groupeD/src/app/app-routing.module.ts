@@ -9,6 +9,7 @@ import { CreateGroupComponent } from './createGroup/create-group.component';
 import { JoinGroupComponent } from './joinGroup/join-group.component';
 import { QuickGroupComponent } from './quickGroup/quick-group.component';
 import { IndexComponent } from './index/index.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'createGroup', component: CreateGroupComponent },
   { path: 'joinGroup', component: JoinGroupComponent },
   { path: 'quickGroup', component: QuickGroupComponent },

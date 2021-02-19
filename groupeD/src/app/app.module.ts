@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms'
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
