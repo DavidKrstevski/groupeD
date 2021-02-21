@@ -2,7 +2,6 @@
 
     <form class="box" action="login.component.html" method="post">
         <h1>Login</h1>
-        <p class="test">username value testing: {{ username.value }}</p>
 
         <input 
             type="text" 
@@ -25,7 +24,7 @@
             maxlength="20"
             autocomplete="off"
             >
-        <a class="login" (click)="onLogin(username.value, password.value)" href="home">submit</a>       
+        <a class="login" (click)="onLogin(username.value, password.value)" href="signedInIndex">submit</a>       
     </form>
 
 </body>

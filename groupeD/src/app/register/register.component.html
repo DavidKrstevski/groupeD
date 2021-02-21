@@ -2,7 +2,7 @@
 
     <form class="box" action="register.component.html" method="post">
         <h1>Create a <span>Groupe<span>D</span></span> Account</h1>
-        <p class="test">username value testing: {{ username.value }}</p>
+        
         <input 
             type="text" 
             name="username" 
@@ -33,7 +33,7 @@
             maxlength="20"
             autocomplete="off"
             >
-        <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)" href="home">submit</a>
+        <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)" href="signedInIndex">submit</a>
     </form>
     
 </body>

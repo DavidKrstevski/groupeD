@@ -21,12 +21,23 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    
   }
 
   onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
     if (myPassword !== myConfirmPassword)
-      return;
+    {
+      this.flashMessage.show('Your passwords are not the same');
+      console.log('Your passwords are not the same')
+      this.router.navigate(['./register']);
+    }
 
+    if (myPassword.length < 7)
+    {
+      this.flashMessage.show('Your password is too short');
+      console.log('Your password is too short')
+      this.router.navigate(["./register"]);
+    }
     //Todo: res false && pass != confirmpass don't route
     
 
@@ -37,17 +48,14 @@ export class RegisterComponent implements OnInit {
     };
    
     this.AuthService.registerUser(user).subscribe(data => {
-        if ((data as any).success){
-          this.AuthService.storeUserData((data as any).token, (data as any).user)
-        } else {
-          this.flashMessage.show('You are now logged in', {
-            cssClass: 'alert-success', 
-            timeout: 5000});       
-
-          this.flashMessage.show((data as any).msg, {
-            cssClass: 'alert-danger', 
-            timeout: 5000});
-        }
+      if (data as any === false){
+        this.flashMessage.show('Register failed, try again', {
+        timeout: 5000});   
+        this.router.navigate(['register']);
+      }
+      
+      this.AuthService.storeUserData((data as any).token, (data as any).user)
+      this.router.navigate(['signedInIndex']);
     });
   }
 }

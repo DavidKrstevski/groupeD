@@ -7,12 +7,14 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     ProfileComponent,
+    SignedInIndexComponent
   ],
   imports: [
     BrowserModule,
