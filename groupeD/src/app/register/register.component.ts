@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -8,29 +10,39 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   
-  myUsername = "";
+  username = "";
   password = "";
   confirmPassword = "";
 
-  constructor() { }
+  constructor(
+    private AuthService:AuthService,
+    private router:Router,
+    private flashMessage:FlashMessagesService
+    ) { }
 
   ngOnInit(): void {
   }
 
   onRegister(username: string, password: string, confirmPassword: string) {
-    this.myUsername = username;
-    this.password = password;
-    this.confirmPassword = confirmPassword;
+    const user = {
+      username: this.username,
+      password: this.password,
+      confirmPassword: this.confirmPassword
+    };
 
-    this.dataToJSON();
-    this.postData();
-  }
+    this.AuthService.registerUser(user).subscribe(data => {
+      console.log(data)
+        if ((data as any).success){
+          this.AuthService.storeUserData((data as any).token, (data as any).user)
+        } else {
+          this.flashMessage.show('You are now logged in', {
+            cssClass: 'alert-success', 
+            timeout: 5000});       
 
-  dataToJSON() {
-
-  }
-
-  postData() {
-
+          this.flashMessage.show((data as any).msg, {
+            cssClass: 'alert-danger', 
+            timeout: 5000});
+        }
+    });
   }
 }

@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d74ce37-12e0-466d-bf34-0be12abb0aaa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/group.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/group.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/register/register.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +88,7 @@
       <workItem from="1613380731082" duration="6119000" />
       <workItem from="1613480806582" duration="495000" />
       <workItem from="1613563259586" duration="1108000" />
+      <workItem from="1613564975267" duration="633000" />
     </task>
     <servers />
   </component>
