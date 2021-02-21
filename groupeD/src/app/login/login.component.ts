@@ -22,14 +22,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogin(username: string, password: string) {
+  onLogin(myUsername: string, myPassword: string) {
     const user = {
-      username: this.username,
-      password: this.password
+      username: myUsername,
+      password: myPassword
     }
 
     this.AuthService.authenticateUser(user).subscribe(data => {
-      console.log(data)
         if ((data as any).success){
           this.AuthService.storeUserData((data as any).token, (data as any).user)
         } else {

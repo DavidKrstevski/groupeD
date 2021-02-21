@@ -12,7 +12,7 @@ router.post('/register',(req,res,next) => {
     database.savePerson(newUser).then(r => res.send(r));
 });
 
-router.get('/login',(req,res,next) => {
+router.post('/login',(req,res,next) => {
     let newUser = {
         username: req.body.username,
         password: req.body.password,

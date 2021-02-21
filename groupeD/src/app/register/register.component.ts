@@ -23,15 +23,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRegister(username: string, password: string, confirmPassword: string) {
-    const user = {
-      username: this.username,
-      password: this.password,
-      confirmPassword: this.confirmPassword
-    };
+  onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
+    if (myPassword !== myConfirmPassword)
+      return;
 
+    //Todo: res false && pass != confirmpass don't route
+    
+
+    const user = {
+      username: myUsername,
+      password: myPassword,
+      confirmPassword: myConfirmPassword
+    };
+   
     this.AuthService.registerUser(user).subscribe(data => {
-      console.log(data)
         if ((data as any).success){
           this.AuthService.storeUserData((data as any).token, (data as any).user)
         } else {
