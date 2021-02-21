@@ -10,19 +10,22 @@ router.post('/create',(req,res,next) => {
     newUserList.push(userId);
     createNewGroupCode().then(codeResult => {
         let newGroup = {
-            joinCode: codeResult,
+            groupCode: codeResult,
             userList: newUserList,
             adminList: newUserList
         };
         database.createGroup(newGroup).then(r => {
-            database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
+            database.addGroupToPerson(req.body._id, codeResult).then(r => res.send(r));
         });
     });
 });
 
-router.put('/join',(req,res,next) => {
+router.post('/join',(req,res,next) => {
     database.addPersonToGroup(req.body.groupCode, req.body._id).then(r => {
-        database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
+        if(r !== false)
+            database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
+        else
+            res.send(r)
     });
 });
 

@@ -22,7 +22,7 @@ const personSchema = new Schema({
 });
 
 const groupSchema = new Schema({
-    joinCode:{
+    groupCode:{
         type: String,
         required:true
     },
@@ -68,7 +68,6 @@ async function savePerson(personData){
 async function createGroup(groupData){
     try{
         let newGroup = new Group(groupData);
-        console.log(newGroup);
         await newGroup.save();
         return true;
     }catch (e) {
@@ -106,8 +105,7 @@ async function getPersonByName(personName){
 
 async function getPersonById(personId){
     try{
-        let query = Person.findOne({_id:personId});
-        let result = await query.exec();
+        let result = await Person.findOne({_id:personId});
         return result;
     }catch (e) {
         console.log("Failed to find: " + e);
@@ -116,8 +114,7 @@ async function getPersonById(personId){
 }
 async function getGroupByCode(groupCode){
     try{
-        let result = await Group.findOne({groupCode:groupCode});
-        return result;
+        return await Group.findOne({groupCode: groupCode});
     }catch (e) {
         console.log("Failed to find: " + e);
         return false;
@@ -163,9 +160,12 @@ async function updatePersonByName(personName, update){
 
 async function addGroupToPerson(personId, groupCode){
     try{
-        let person = getPersonById(personId);
-        let groups = person.groups;
+        let person = await getPersonById(personId);
+        let groups = [];
+        if(person.groups !== null)
+            groups = person.groups;
         groups.push(groupCode);
+
         let result = await Person.updateOne({_id:personId}, {groups:groups});
         if(result.nModified === 0)
             return false;
@@ -178,8 +178,16 @@ async function addGroupToPerson(personId, groupCode){
 
 async function addPersonToGroup(groupCode, personId){
     try{
-        let group = getGroupByCode(groupCode);
-        let persons = group.userList;
+        let group = await getGroupByCode(groupCode);
+        let persons = [];
+        if(group.userList !== null)
+            persons = group.userList;
+
+        for (let i = 0; i < persons.length; i++) {
+            if(persons[i] === personId)
+                return false;
+        }
+
         persons.push(personId);
         let result = await Group.updateOne({groupCode:groupCode}, {userList:persons});
         if(result.nModified === 0)
@@ -190,19 +198,6 @@ async function addPersonToGroup(groupCode, personId){
         return false;
     }
 }
-
-async function updateGroupList(groupCode, update){
-    try{
-        let result = await Group.updateOne({groupCode:groupCode}, update);
-        if(result.nModified === 0)
-            return false;
-        return true;
-    }catch (e) {
-        console.log("Failed to update: " + e);
-        return false;
-    }
-}
-
 
 async function _hash(password){
     try{
