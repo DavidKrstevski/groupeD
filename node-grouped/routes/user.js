@@ -17,12 +17,7 @@ router.post('/login',(req,res,next) => {
         username: req.body.username,
         password: req.body.password,
     };
-    database.checkLogin(newUser).then(r =>{
-            if(r)
-                res.send(true);
-            else
-                res.send(false);
-    });
+    database.checkLogin(newUser).then(r => res.send(r));
 });
 
 router.get('/profile',(req,res,next) => {

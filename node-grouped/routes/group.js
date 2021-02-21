@@ -14,14 +14,15 @@ router.post('/create',(req,res,next) => {
             userList: newUserList,
             adminList: newUserList
         };
-        database.createGroup(newGroup).then(r => res.send(r));
+        database.createGroup(newGroup).then(r => {
+            database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
+        });
     });
 });
 
 router.put('/join',(req,res,next) => {
-    database.getGroupByCode(req.body.groupCode).then(group => {
-        group.userList.push(req.body._id);
-        database.updateGroupList(req.body.groupCode, req.body).then(r => res.send(r))
+    database.addPersonToGroup(req.body.groupCode, req.body._id).then(r => {
+        database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
     });
 });
 

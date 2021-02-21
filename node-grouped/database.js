@@ -108,6 +108,7 @@ async function getPersonById(personId){
     try{
         let query = Person.findOne({_id:personId});
         let result = await query.exec();
+        return result;
     }catch (e) {
         console.log("Failed to find: " + e);
         return false;
@@ -160,6 +161,36 @@ async function updatePersonByName(personName, update){
     }
 }
 
+async function addGroupToPerson(personId, groupCode){
+    try{
+        let person = getPersonById(personId);
+        let groups = person.groups;
+        groups.push(groupCode);
+        let result = await Person.updateOne({_id:personId}, {groups:groups});
+        if(result.nModified === 0)
+            return false;
+        return true;
+    }catch (e) {
+        console.log("Failed to update: " + e);
+        return false;
+    }
+}
+
+async function addPersonToGroup(groupCode, personId){
+    try{
+        let group = getGroupByCode(groupCode);
+        let persons = group.userList;
+        persons.push(personId);
+        let result = await Group.updateOne({groupCode:groupCode}, {userList:persons});
+        if(result.nModified === 0)
+            return false;
+        return true;
+    }catch (e) {
+        console.log("Failed to update: " + e);
+        return false;
+    }
+}
+
 async function updateGroupList(groupCode, update){
     try{
         let result = await Group.updateOne({groupCode:groupCode}, update);
@@ -197,7 +228,8 @@ module.exports = {
     deletePersonByName,
     deletePersonById,
     updatePersonByName,
-    updateGroupList
+    addGroupToPerson,
+    addPersonToGroup
 }
 
 
