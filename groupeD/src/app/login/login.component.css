@@ -67,14 +67,15 @@ body {
     border-color: white;
 }
 
-.box input[type = "submit"] {
+.login {
     border: 0;
     background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
     border: 2px solid black;
-    padding: 14px 40px;
+    padding: 14px 10px;
+    width: 200px;
     outline: none;
     color: grey;
     border-radius: 24px;
@@ -82,22 +83,8 @@ body {
     cursor: pointer;
 }
 
-.box input[type = "submit"]:hover {
+.login:hover {
     color: yellow;
     border-color: white;
-}
-
-.login {
-    text-decoration: none;
-    color: grey;
-    border: 2px solid black;
-    padding: 14px 40px;
-    display: block;
-    border-radius: 24px;
-    transition: 0.25s;
-    outline: none;
-}
-
-.test{
-    color:#fff;
+    width: 230px;
 }
