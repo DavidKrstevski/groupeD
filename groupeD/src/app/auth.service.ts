@@ -18,7 +18,6 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers.append('Contet-Type', 'application/json');
 
-    console.log(user)
     return this.http.post<any>('http://localhost:3000/user/register', user, {
       headers: headers,
       observe: 'response'
@@ -28,7 +27,6 @@ export class AuthService {
   authenticateUser(user: any) {
     let headers = new HttpHeaders();
     headers.append('Contet-Type', 'application/json');
-    console.log(headers);
 
     return this.http.post<any>('http://localhost:3000/user/login', user, {
       headers: headers,

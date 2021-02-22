@@ -29,14 +29,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.AuthService.authenticateUser(user).subscribe(data => {
+      console.log(data)
         if (data as any === false){
           this.flashMessage.show('Logging in failed, try again', {
           timeout: 5000});   
-          this.router.navigate(['login']);
         }      
-        
+                
         this.AuthService.storeUserData((data as any).token, (data as any).user)
-        this.router.navigate(['signedInIndex']);
+        
 
           // this.flashMessage.show('You are now logged in', {
           //   cssClass: 'alert-success', 

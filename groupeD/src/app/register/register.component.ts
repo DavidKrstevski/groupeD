@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private AuthService:AuthService,
     private router:Router,
-    private flashMessage:FlashMessagesService
+    private _flashMessage:FlashMessagesService
     ) { }
 
   ngOnInit(): void {
@@ -27,19 +27,30 @@ export class RegisterComponent implements OnInit {
   onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
     if (myPassword !== myConfirmPassword)
     {
-      this.flashMessage.show('Your passwords are not the same');
-      console.log('Your passwords are not the same')
+      this._flashMessage.show('Your passwords are not the same', 
+      { cssClass: 'alert' });
       this.router.navigate(['./register']);
+      setTimeout(function() { window.location.reload()}, 1500)
+      return;
     }
 
     if (myPassword.length < 7)
     {
-      this.flashMessage.show('Your password is too short');
-      console.log('Your password is too short')
+      this._flashMessage.show('Your password is too short', 
+      { cssClass: 'alert', timeout: 5000 });
       this.router.navigate(["./register"]);
+      setTimeout(function() { window.location.reload()}, 1500)
+      return;
     }
-    //Todo: res false && pass != confirmpass don't route
-    
+
+    if (myUsername.length < 2)
+    {
+      this._flashMessage.show('Your username is too short', 
+      { cssClass: 'alert', timeout: 5000 });
+      this.router.navigate(["./register"]);
+      setTimeout(function() { window.location.reload()}, 1500)
+      return;
+    }
 
     const user = {
       username: myUsername,
@@ -49,13 +60,13 @@ export class RegisterComponent implements OnInit {
    
     this.AuthService.registerUser(user).subscribe(data => {
       if (data as any === false){
-        this.flashMessage.show('Register failed, try again', {
-        timeout: 5000});   
+        this._flashMessage.show('Register failed, try again', 
+        { cssClass: 'alert-success', timeout: 1000 })
         this.router.navigate(['register']);
       }
       
       this.AuthService.storeUserData((data as any).token, (data as any).user)
-      this.router.navigate(['signedInIndex']);
+      this.router.navigate(['login']);
     });
   }
 }

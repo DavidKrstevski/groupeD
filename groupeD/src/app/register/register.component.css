@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -94,4 +94,12 @@ body {
     color: yellow;
     border-color: white;
     width: 230px;
+} */
+
+.alert {
+
+}
+
+.alert.success {
+
 }

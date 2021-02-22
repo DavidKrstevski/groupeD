@@ -12,4 +12,7 @@ export class SignedInIndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onLogout() {
+    
+  }
 }
