@@ -82,9 +82,11 @@ async function checkLogin(personData){
         let query = Person.findOne({username:personData.username});
         let result = await query.exec();
         if(!result)
-            return false;
+            return null;
         let compare = await bcrypt.compare(personData.password, result.password);
-        return compare;
+        if(compare === true)
+            return result;
+        return null;
     }catch (e) {
         console.log("Failed to find: " + e);
         return false;
