@@ -24,30 +24,30 @@ export class RegisterComponent implements OnInit {
     
   }
 
-  onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
+  async onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
+    if (myUsername === "" || myConfirmPassword === "" || myPassword === ""){
+      this._flashMessage.show('No inputs given')
+      setTimeout(function() { window.location.reload()}, 1500)
+      return;
+    }
+
     if (myPassword !== myConfirmPassword)
     {
-      this._flashMessage.show('Your passwords are not the same', 
-      { cssClass: 'alert' });
-      this.router.navigate(['./register']);
+      this._flashMessage.show('Your passwords are not the same')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
 
     if (myPassword.length < 7)
     {
-      this._flashMessage.show('Your password is too short', 
-      { cssClass: 'alert', timeout: 5000 });
-      this.router.navigate(["./register"]);
+      this._flashMessage.show('Your password is too short')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
 
     if (myUsername.length < 2)
     {
-      this._flashMessage.show('Your username is too short', 
-      { cssClass: 'alert', timeout: 5000 });
-      this.router.navigate(["./register"]);
+      this._flashMessage.show('Your username is too short')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
@@ -60,9 +60,9 @@ export class RegisterComponent implements OnInit {
    
     this.AuthService.registerUser(user).subscribe(data => {
       if (data as any === false){
-        this._flashMessage.show('Register failed, try again', 
-        { cssClass: 'alert-success', timeout: 1000 })
-        this.router.navigate(['register']);
+        this._flashMessage.show('Register failed, try again')
+        setTimeout(function() { window.location.reload()}, 1500)
+      return;
       }
       
       this.AuthService.storeUserData((data as any).token, (data as any).user)

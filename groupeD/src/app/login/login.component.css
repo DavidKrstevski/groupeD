@@ -14,6 +14,7 @@ body {
     background: linear-gradient(-45deg, #FA6B0F, #DE7C0B, #F59F00, #DEA90B, #FFD802);
     background-size: 400% 400%;
     animation: change 10s ease-in-out infinite;
+    z-index: -1;
 }
 
 @keyframes change {

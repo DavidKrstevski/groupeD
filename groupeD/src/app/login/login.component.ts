@@ -16,13 +16,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private AuthService:AuthService,
     private router:Router,
-    private flashMessage:FlashMessagesService
+    private _flashMessage:FlashMessagesService
     ) { }
 
   ngOnInit(): void {
   }
 
   onLogin(myUsername: string, myPassword: string) {
+    if (myUsername === "" || myPassword === ""){
+      this._flashMessage.show('No inputs given')
+      setTimeout(function() { window.location.reload()}, 1500)
+      return;
+    }
+
     const user = {
       username: myUsername,
       password: myPassword
@@ -30,13 +36,14 @@ export class LoginComponent implements OnInit {
 
     this.AuthService.authenticateUser(user).subscribe(data => {
       console.log(data)
-        if (data as any === false){
-          this.flashMessage.show('Logging in failed, try again', {
+        if (data as any === null){
+          this._flashMessage.show('Logging in failed, try again', {
           timeout: 5000});   
+
         }      
                 
         this.AuthService.storeUserData((data as any).token, (data as any).user)
-        
+        this.router.navigate(['signedInIndex']);
 
           // this.flashMessage.show('You are now logged in', {
           //   cssClass: 'alert-success', 
