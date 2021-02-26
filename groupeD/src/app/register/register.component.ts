@@ -59,8 +59,8 @@ export class RegisterComponent implements OnInit {
     };
    
     this.AuthService.registerUser(user).subscribe(data => {
-      if (data as any === false){
-        this._flashMessage.show('Register failed, try again')
+      if (data.body as any === false){
+        this._flashMessage.show('This username already exists')
         setTimeout(function() { window.location.reload()}, 1500)
       return;
       }

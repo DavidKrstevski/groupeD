@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.AuthService.authenticateUser(user).subscribe(data => {
-      console.log(data)
-        if (data as any === null){
-          this._flashMessage.show('Logging in failed, try again', {
+        if (data.body === null){
+          this._flashMessage.show('Wrong Username or Password', {
           timeout: 5000});   
-
+          setTimeout(function() { window.location.reload()}, 1500)
+          return;
         }      
                 
         this.AuthService.storeUserData((data as any).token, (data as any).user)
