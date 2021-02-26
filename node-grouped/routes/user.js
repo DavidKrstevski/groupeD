@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const database = require('../database');
 
-const User = require('../database').Person;
-
 router.post('/register',(req,res,next) => {
     let newUser = {
         username: req.body.username,

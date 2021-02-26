@@ -5,7 +5,7 @@ const user = require('./routes/user');
 const group = require('./routes/group');
 const database = require('./database');
 
-database.connect();
+database.connect().then(r => console.log("CONNECTED"));
 
 const app = express();
 

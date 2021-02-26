@@ -41,9 +41,8 @@ const Group = mongoose.model('Group', groupSchema);
 
 async function connect(){
     try{
-        console.log("Trying to connect");
+        console.log("Trying to connect to the database");
         await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log("CONNECTED");
     }catch (e) {
         console.log("Connection Failed: " + e);
     }
@@ -61,7 +60,6 @@ async function savePerson(personData){
         return true;
     }catch (e) {
         console.log("Failed to save: " + e);
-        return false;
     }
 }
 
@@ -69,18 +67,15 @@ async function createGroup(groupData){
     try{
         let newGroup = new Group(groupData);
         await newGroup.save();
-        return true;
     }catch (e) {
         console.log("Failed to save: " + e);
-        return false;
     }
 }
 
 //Get
 async function checkLogin(personData){
     try{
-        let query = Person.findOne({username:personData.username});
-        let result = await query.exec();
+        let result = await Person.findOne({username:personData.username});
         if(!result)
             return null;
         let compare = await bcrypt.compare(personData.password, result.password);
@@ -89,7 +84,6 @@ async function checkLogin(personData){
         return null;
     }catch (e) {
         console.log("Failed to find: " + e);
-        return false;
     }
 }
 
@@ -101,7 +95,6 @@ async function getPersonByName(personName){
         return result;
     }catch (e) {
         console.log("Failed to find: " + e);
-        return false;
     }
 }
 
@@ -111,7 +104,6 @@ async function getPersonById(personId){
         return result;
     }catch (e) {
         console.log("Failed to find: " + e);
-        return false;
     }
 }
 async function getGroupByCode(groupCode){
@@ -119,22 +111,10 @@ async function getGroupByCode(groupCode){
         return await Group.findOne({groupCode: groupCode});
     }catch (e) {
         console.log("Failed to find: " + e);
-        return false;
-    }
-}
-//Delete
-async function deletePersonByName(personName){
-    try{
-        let result = await Person.deleteOne({username:personName});
-        if(result.deletedCount === 0)
-            return false;
-        return true;
-    }catch (e) {
-        console.log("Failed to delete: " + e);
-        return false;
     }
 }
 
+//Delete
 async function deletePersonById(personId){
     try{
         let result = await Person.deleteOne({_id:personId});
@@ -143,23 +123,10 @@ async function deletePersonById(personId){
         return true;
     }catch (e) {
         console.log("Failed to delete: " + e);
-        return false;
     }
 }
 
 //Update
-async function updatePersonByName(personName, update){
-    try{
-        let result = await Person.updateOne({username:personName}, update);
-        if(result.nModified === 0)
-            return false;
-        return true;
-    }catch (e) {
-        console.log("Failed to update: " + e);
-        return false;
-    }
-}
-
 async function addGroupToPerson(personId, groupCode){
     try{
         let person = await getPersonById(personId);
@@ -174,7 +141,6 @@ async function addGroupToPerson(personId, groupCode){
         return true;
     }catch (e) {
         console.log("Failed to update: " + e);
-        return false;
     }
 }
 
@@ -197,7 +163,6 @@ async function addPersonToGroup(groupCode, personId){
         return true;
     }catch (e) {
         console.log("Failed to update: " + e);
-        return false;
     }
 }
 
@@ -208,23 +173,16 @@ async function _hash(password){
         return hash;
     }catch (e) {
         console.log("Failed to hash: " + e);
-        return false;
     }
 }
 
 module.exports = {
-    Person,
-    Group,
     connect,
     savePerson,
     createGroup,
     checkLogin,
-    getPersonByName,
     getPersonById,
     getGroupByCode,
-    deletePersonByName,
-    deletePersonById,
-    updatePersonByName,
     addGroupToPerson,
     addPersonToGroup
 }
