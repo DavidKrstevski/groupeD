@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   async onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
     if (myUsername === "" || myConfirmPassword === "" || myPassword === ""){
-      this._flashMessage.show('No inputs given')
+      this._flashMessage.show('One or more fields were empty')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
@@ -62,9 +62,9 @@ export class RegisterComponent implements OnInit {
       if (data.body as any === false){
         this._flashMessage.show('This username already exists')
         setTimeout(function() { window.location.reload()}, 1500)
-      return;
+        return;
       }
-      
+      this._flashMessage.show('Register worked!')
       this.AuthService.storeUserData((data as any).token, (data as any).user)
       this.router.navigate(['login']);
     });

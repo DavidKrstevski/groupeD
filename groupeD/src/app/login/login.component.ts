@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(myUsername: string, myPassword: string) {
     if (myUsername === "" || myPassword === ""){
-      this._flashMessage.show('No inputs given')
+      this._flashMessage.show('One or two fields were empty')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
@@ -37,22 +37,13 @@ export class LoginComponent implements OnInit {
     this.AuthService.authenticateUser(user).subscribe(data => {
         if (data.body === null){
           this._flashMessage.show('Wrong Username or Password', {
-          timeout: 5000});   
+          timeout: 1500});   
           setTimeout(function() { window.location.reload()}, 1500)
           return;
         }      
-                
+        this._flashMessage.show('Log in worked!')  
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.router.navigate(['signedInIndex']);
-
-          // this.flashMessage.show('You are now logged in', {
-          //   cssClass: 'alert-success', 
-          //   timeout: 5000});       
-
-          // this.flashMessage.show((data as any).msg, {
-          //   cssClass: 'alert-danger', 
-          //   timeout: 5000});
-        
     });
   }
 }
