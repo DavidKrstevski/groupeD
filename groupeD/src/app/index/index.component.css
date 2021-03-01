@@ -11,10 +11,14 @@ body {
     height: 100%;
     top: 0%;
     left: 0%;
-    background: linear-gradient(-45deg, #FA6B0F, #DE7C0B, #F59F00, #DEA90B, #FFD802);
+    /*background: linear-gradient(-45deg, #FA6B0F, #DE7C0B, #F59F00, #DEA90B, #FFD802);*/
+    /*TODO: RANDOM UNSPLASH IMAGE API!!*/
+    background: #000000;
+    background-image: url("../../assets/people.jpg");
     /* background: linear-gradient(-45deg, #269160, #31ac90, #75cfa8, #61dca4, #c3dcd2); */
-    background-size: 400% 400%;
-    animation: change 10s ease-in-out infinite;
+    /*background: #eeeeee;*/
+    background-size: 120% 120%;
+    animation: change 30s ease-in-out infinite;
 }
 
 @keyframes change {
@@ -49,7 +53,8 @@ body {
     /* height: 90px; */
     height: 12%;
     display: block;
-    background-color: #101010;
+    background-color: #ffffff67;
+    box-shadow: 0px 5px 25px #00000035;
 }
 
 .inner_header {
@@ -66,18 +71,13 @@ body {
 }
 
 .logo_container h1 {
-    color: #E3AD50;
+    color: #000000;
     height: 100%;
     display: table-cell;
     vertical-align: middle;
     font-family: verdana;
     font-size: 34px;
     font-weight: 200;
-}
-
-.logo_container h1 span {
-    font-weight: 800;
-    color: #DEAD0D;
 }
 
 .logo_container a {
@@ -105,32 +105,49 @@ body {
     display: table-cell;
     vertical-align: middle;
     height: 100%;
-    color: #F7D259;
-    font-family: verdana;
+    color: #13001f;
+    font-family: 'Bahnschrift Light';
     font-size: 18px;
+    text-shadow: 0px 2px 5px #00000035;
+    text-decoration:none;
+    transition: ease-out 0.15s;
 }
 
 .navigation a li:hover {
-    color:white;
+    /*color:rgb(255, 100, 100);*/
+    color:black;
+    text-decoration: underline red;
 }
 
 .group_button button {
-    background-color:#D6AE00;
+    background-color:#FFFFFF;
     /* background-color: #c3dcd2; */
-    border: none;
-    border-radius: 35px;
-    font-family: verdana;
+    border-radius: 50px;
+    font-family: 'Bahnschrift SemiBold';
     font-size: 20px;
     width: 20%;
+    height: 5%;
     margin-top: 15%;   
     margin-left: 10%;
     padding: 2%;
-    border: 2px solid black;  
+    /*border: 2px solid black;*/
+    border:none; 
+    box-shadow: 0px 10px 15px #00000035; 
     outline: none;
+    transition: ease-out 0.15s;
 }
 
 .group_button button:hover {    
-    color: yellow;
-    background-color: grey;
+    color: white;
+    /*font-size: 20px;
+    width:22%;*/
+    /*ROTATE ?*/
+    background-color: rgb(87, 226, 94);
+    /* background-color: #52c3cc; */
+}
+
+.group_button button:active {    
+    /*ROTATE ?*/
+    background-color: rgb(226, 87, 87);
     /* background-color: #52c3cc; */
 }
