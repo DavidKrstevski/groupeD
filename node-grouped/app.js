@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const user = require('./routes/user');
 const group = require('./routes/group');
 const database = require('./database');
+const cookieParser = require('cookie-parser');
+
 
 database.connect().then(r => console.log("CONNECTED"));
 
@@ -12,14 +14,14 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use('/user',user);
 app.use('/group',group);
 
 app.get('/', (req,res) => {
-    res.send('Invalid Enpoint');
+    res.send('Invalid Endpoint');
 })
 
 app.listen(port, () => {
