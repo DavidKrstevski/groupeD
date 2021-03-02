@@ -2,30 +2,41 @@
     <head>
         <title>GroupeD</title>
         <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
     </head>
 
     <body>    
-        <div class="header">
+        <div id="header_background"></div>
+        <nav>
             <div class="inner_header">
                 <div class="logo_container">
                     <h1>
                         <a ng href="home">GROUPED</a>
-                        <!--<a><span>D</span></a>-->
                     </h1>
                 </div>
         
                 <ul class="navigation">
-                    <a href="register"><li>Sign up</li></a>      
-                    <a href="login"><li>Log in</li></a>        
+                    <li><a href="register">Sign up</a></li>      
+                    <li><a href="login">Log in</a></li>        
                 </ul>
             </div>
+        </nav>
+        <div class="header">
+            <!--CREATE HEADER = "FASTED GROUPS ON THE WEB" idk,
+                darunter kleinerer header "all data is safe" ka, background bunt (waves? bubbles, some shit, NEHMETZ FADE?)-->
+            <div id="button_header">
+                <h1 data-text="FASTEST GROUPS ON THE WEB">FASTEST GROUPS ON THE WEB</h1>
+                <h2>all data is safe</h2>
+            </div>
+            <div class="group_button">
+                <a href="createGroup" title="Create a group">CREATE</a>
+                <a href="joinGroup" title="Join a group">JOIN</a>
+                <a href="quickGroup" title="Join a group quickly">QUICK</a>
+            </div>
         </div>
-        <!--CREATE HEADER = "FASTED GROUPS ON THE WEB" idk,
-            darunter kleinerer header "all data is safe" ka, background bunt (waves? bubbles, some shit, NEHMETZ FADE?)-->
-        <div class="group_button">
-            <a href="createGroup"><button title="Create a group">CREATE</button></a>
-            <a href="joinGroup"><button title="Join a group">JOIN</button></a>
-            <a href="quickGroup"><button title="Join a group quickly">QUICK</button></a>
+        <div class="footer">
+            <a href="#" title="Email us">E-Mail</a>
         </div>
 
         <!-- <footer>
