@@ -4,21 +4,21 @@ const database = require('../database');
 
 router.post('/create',(req,res,next) => {
     let newUserList = [];
-    newUserList.push(req.body._id);
+    newUserList.push(req.cookies.userId);
     _createNewGroupCode().then(codeResult => {
         let newGroup = {
             groupCode: codeResult,
             userList: newUserList,
             adminList: newUserList
         };
-        database.createGroup(newGroup).then(r => database.addGroupToPerson(req.body._id, codeResult).then(r => res.send(r)));
+        database.createGroup(newGroup).then(r => database.addGroupToPerson(req.cookies.userId, codeResult).then(r => res.send(r)));
     });
 });
 
 router.post('/join',(req,res,next) => {
-    database.addPersonToGroup(req.body.groupCode, req.body._id).then(r => {
+    database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => {
         if(r)
-            database.addGroupToPerson(req.body._id, req.body.groupCode).then(r => res.send(r));
+            database.addGroupToPerson(req.cookies.userId, req.body.groupCode).then(r => res.send(r));
         else
             res.send(r)
     });

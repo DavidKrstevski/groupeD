@@ -17,17 +17,17 @@ router.post('/login',(req,res,next) => {
     };
 
     database.checkLogin(newUser).then(r => {
-        if(r === false)
-            res.send(r);
+        if(r === null)
+            res.send(false);
 
         res.cookie("userId", r._id, {httpOnly: true});
-        res.send(r);
+        res.send(true);
     });
 });
 
 router.post('/logout',(req,res,next) => {
-    res.clearCookie('userData');
-    res.send('user logout successfully');
+    res.clearCookie('userId');
+    res.send(true);
 });
 
 router.post('/myGroups',(req,res,next) => {

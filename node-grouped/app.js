@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const user = require('./routes/user');
 const group = require('./routes/group');
 const database = require('./database');
-const cookieParser = require('cookie-parser');
 
 
 database.connect().then(r => console.log("CONNECTED"));
