@@ -8,13 +8,15 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
+import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     ProfileComponent,
-    SignedInIndexComponent
+    SignedInIndexComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

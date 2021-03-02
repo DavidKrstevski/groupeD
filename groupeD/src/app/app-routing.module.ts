@@ -12,6 +12,7 @@ import { IndexComponent } from './index/index.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ErrorComponent } from './error/error.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
+import { GroupComponent } from './group/group.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'joinGroup', component: JoinGroupComponent },
   { path: 'quickGroup', component: QuickGroupComponent },
   { path: 'signedInIndex', component: SignedInIndexComponent },
+  { path: 'group', component: GroupComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -41,5 +43,6 @@ export const routingComponents = [
   QuickGroupComponent,
   ErrorComponent,
   SignedInIndexComponent,
-  ProfileComponent
+  ProfileComponent,
+  GroupComponent
 ];
