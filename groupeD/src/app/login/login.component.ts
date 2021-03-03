@@ -11,7 +11,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class LoginComponent implements OnInit {
 
   username = "";
-  password = "";
 
   constructor(
     private AuthService:AuthService,
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.AuthService.authenticateUser(user).subscribe(data => {
-        if (data.body === null){
+        if (data.body as any === false){
           this._flashMessage.show('Wrong Username or Password', {
           timeout: 1500});   
           setTimeout(function() { window.location.reload()}, 1500)
@@ -43,6 +42,7 @@ export class LoginComponent implements OnInit {
         }      
         this._flashMessage.show('Log in worked!')  
         this.AuthService.storeUserData((data as any).token, (data as any).user)
+        this.username = myUsername;
         this.router.navigate(['signedInIndex']);
     });
   }

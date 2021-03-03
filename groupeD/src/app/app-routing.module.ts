@@ -5,14 +5,17 @@ import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
 import { CreateGroupComponent } from './createGroup/create-group.component';
 import { JoinGroupComponent } from './joinGroup/join-group.component';
 import { QuickGroupComponent } from './quickGroup/quick-group.component';
+
 import { IndexComponent } from './index/index.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ErrorComponent } from './error/error.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
 import { GroupComponent } from './group/group.component';
+
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},

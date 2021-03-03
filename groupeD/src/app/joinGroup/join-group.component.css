@@ -45,6 +45,18 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     text-align: center;
 }
 
+.joinbtn {
+    position: absolute;
+    top: 75%;
+    left: 50%;  
+    width: 300px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    font-family: verdana;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
 /* .box {
     width: 300px;
     padding: 40px;

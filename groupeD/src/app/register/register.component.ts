@@ -11,8 +11,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class RegisterComponent implements OnInit {
   
   username = "";
-  password = "";
-  confirmPassword = "";
 
   constructor(
     private AuthService:AuthService,
@@ -66,6 +64,7 @@ export class RegisterComponent implements OnInit {
       }
       this._flashMessage.show('Register worked!')
       this.AuthService.storeUserData((data as any).token, (data as any).user)
+      this.username = myUsername;
       this.router.navigate(['login']);
     });
   }

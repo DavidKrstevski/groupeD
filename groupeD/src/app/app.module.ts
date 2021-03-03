@@ -10,13 +10,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
 import { GroupComponent } from './group/group.component';
 
+import { JoinGroupComponent } from './joinGroup/join-group.component'
+import { CreateGroupComponent } from './createGroup/create-group.component'
+import { QuickGroupComponent } from './quickGroup/quick-group.component'
+
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     ProfileComponent,
     SignedInIndexComponent,
-    GroupComponent
+    GroupComponent,
+    JoinGroupComponent,
+    CreateGroupComponent,
+    QuickGroupComponent
   ],
   imports: [
     BrowserModule,

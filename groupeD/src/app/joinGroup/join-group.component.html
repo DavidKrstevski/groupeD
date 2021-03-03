@@ -13,9 +13,14 @@
     <form class="box" action="register.component.html" method="post">
         <input 
         type="text"
-        minlength="5"
+        name="code"
+        required
+        ngModel
+        #code="ngModel" 
+        autocomplete="off"
         maxlength="5"
-        placeholder="Enter Group Code">
+        placeholder="Enter Group Code"
+        >       
     </form>
-    <a href="group">Join Group</a>   
+    <a class="joinbtn" (click)="onJoinGroup(code.value)">Join Group</a> 
 </body>

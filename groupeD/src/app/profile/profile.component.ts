@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-profile.component',
@@ -7,11 +8,14 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @Input() login: LoginComponent | undefined;
 
-  constructor(private _flashMessagesService: FlashMessagesService) {}
+  constructor() {
+    
+  }
 
   ngOnInit(): void {
-    this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000 });
+
   }
 
 }

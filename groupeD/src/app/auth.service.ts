@@ -24,6 +24,26 @@ export class AuthService {
     }).pipe(map((res: HttpResponse<JSON>) => res));
   }
 
+  createGroup(user: any) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post<any>('http://localhost:3000/user/joinGroup', user, {
+      headers: headers,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
+  joinGroup(user: any) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post<any>('http://localhost:3000/user/joinGroup', user, {
+      headers: headers,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
   authenticateUser(user: any) {
     let headers = new HttpHeaders();
     headers.append('Contet-Type', 'application/json');
