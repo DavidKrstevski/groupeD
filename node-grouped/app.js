@@ -11,8 +11,6 @@ database.connect().then(r => console.log("CONNECTED"));
 
 const app = express();
 
-const port = 3000;
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -24,6 +22,6 @@ app.get('/', (req,res) => {
     res.send('Invalid Endpoint');
 })
 
-app.listen(port, () => {
-   console.log('Server started on port '+ port);
+app.listen(process.env.SERVER_PORT, () => {
+   console.log('Server started on port '+ process.env.SERVER_PORT);
 });
