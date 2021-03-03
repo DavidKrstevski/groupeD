@@ -24,6 +24,12 @@ router.post('/join',(req,res,next) => {
     });
 });
 
+router.post('/addAdmin',(req,res,next) => {
+    database.addAdmin(req.body.groupCode, req.body.userName).then(r => {
+        res.send(r);
+    })
+});
+
 async function _createNewGroupCode(){
     let code = _getRandomInt(10000,100000);
     let group = await database.getGroupByCode(code);

@@ -157,10 +157,20 @@ async function addPersonToGroup(groupCode, personId){
 
         persons.push(personId);
         let result = await Group.updateOne({groupCode:groupCode}, {userList:persons});
-        if(result.nModified === 0)
-            return false;
-        return true;
+        return result.nModified === 1;
     }catch (e) {
+        console.log("Failed to update: " + e);
+    }
+}
+
+async function addAdmin(groupCode, userName){
+    try {
+        let person = await getPersonByName(userName);
+        let group = await getGroupByCode(groupCode);
+        group.adminList.push(person._id);
+        let result = await Group.updateOne({groupCode:groupCode}, {adminList:group.adminList});
+        return result.nModified === 1;
+    }catch (e){
         console.log("Failed to update: " + e);
     }
 }
@@ -183,5 +193,6 @@ module.exports = {
     getPersonById,
     getGroupByCode,
     addGroupToPerson,
-    addPersonToGroup
+    addPersonToGroup,
+    addAdmin
 }
