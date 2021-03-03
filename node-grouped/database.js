@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { Schema } = mongoose;
-
-const connectionString = "mongodb+srv://admin:admin@groupedcluster.qjwbz.mongodb.net/GroupedCluster?retryWrites=true&w=majority";
+const env = require('dotenv/config');
 
 //Schema and Models
 const personSchema = new Schema({
@@ -42,7 +41,7 @@ const Group = mongoose.model('Group', groupSchema);
 async function connect(){
     try{
         console.log("Trying to connect to the database");
-        await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect(process.env.DB_CON, { useNewUrlParser: true, useUnifiedTopology: true });
     }catch (e) {
         console.log("Connection Failed: " + e);
     }
