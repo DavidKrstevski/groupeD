@@ -7,6 +7,7 @@ router.post('/create',(req,res,next) => {
     newUserList.push(req.cookies.userId);
     _createNewGroupCode().then(codeResult => {
         let newGroup = {
+            groupName: req.body.groupName,
             groupCode: codeResult,
             userList: newUserList,
             adminList: newUserList
@@ -26,6 +27,18 @@ router.post('/join',(req,res,next) => {
 
 router.post('/addAdmin',(req,res,next) => {
     database.addAdmin(req.body.groupCode, req.body.userName).then(r => {
+        res.send(r);
+    })
+});
+
+router.post('/kickUser',(req,res,next) => {
+    database.kickUser(req.body.groupCode, req.body.userName).then(r => {
+        res.send(r);
+    })
+});
+
+router.post('/isAdmin',(req,res,next) => {
+    database.isAdmin(req.body.groupCode, req.cookies.userId).then(r => {
         res.send(r);
     })
 });

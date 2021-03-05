@@ -21,6 +21,10 @@ const personSchema = new Schema({
 });
 
 const groupSchema = new Schema({
+    groupName:{
+        type: String,
+        required:true
+    },
     groupCode:{
         type: String,
         required:true
@@ -31,6 +35,10 @@ const groupSchema = new Schema({
     },
     adminList: {
         type: [String],
+        required: true
+    },
+    teamsList: {
+        type: [[String]],
         required: true
     }
 });
@@ -175,6 +183,25 @@ async function addAdmin(groupCode, userName){
     }
 }
 
+async function kickUser(groupCode, userName){
+    try {
+        let person = await getPersonByName(userName);
+        let group = await getGroupByCode(groupCode);
+        group.userList.remove(person._id);
+        let result = await Group.updateOne({groupCode:groupCode}, {userList:group.userList});
+        return result.nModified === 1;
+    }catch (e){
+        console.log("Failed to update: " + e);
+    }
+}
+
+//Checking
+
+async function isAdmin(groupCode, personId){
+    let group = await getGroupByCode(groupCode);
+    return group.adminList.includes(personId);
+}
+
 async function _hash(password){
     try{
         let salt = await bcrypt.genSalt(saltRounds);
@@ -194,5 +221,7 @@ module.exports = {
     getGroupByCode,
     addGroupToPerson,
     addPersonToGroup,
-    addAdmin
+    addAdmin,
+    kickUser,
+    isAdmin
 }
