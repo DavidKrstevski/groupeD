@@ -3,6 +3,8 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import { DataService } from '../data.service'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,10 +17,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private AuthService:AuthService,
     private router:Router,
-    private _flashMessage:FlashMessagesService
+    private _flashMessage:FlashMessagesService,
+    private data:DataService
     ) { }
 
   ngOnInit(): void {
+    this.data.currentMessage.subscribe(username => this.username = username)
   }
 
   onLogin(myUsername: string, myPassword: string) {
@@ -43,7 +47,12 @@ export class LoginComponent implements OnInit {
         this._flashMessage.show('Log in worked!')  
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.username = myUsername;
+        this.newMessage();
         this.router.navigate(['signedInIndex']);
     });
   }
+
+   newMessage() {
+     this.data.changeMessage(this.username);
+   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { LoginComponent } from '../login/login.component';
+import { DataService } from '../data.service'
 
 @Component({
   selector: 'app-profile.component',
@@ -8,14 +7,12 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @Input() login: LoginComponent | undefined;
+  username = "";
 
-  constructor() {
-    
+  constructor(private data: DataService) {
   }
 
   ngOnInit(): void {
-
+    this.data.currentMessage.subscribe(username => this.username = username)
   }
-
 }
