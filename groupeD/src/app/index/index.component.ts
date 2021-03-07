@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
 
   changeCreateText($event: any) {
     if ($event.type == 'mouseover'){
-      this.createButton = 'This creates a group'
+      this.createButton = 'CREATE A GROUP'
       this.font = 12;
       return
     }
@@ -23,11 +23,11 @@ export class IndexComponent implements OnInit {
   }
 
   changeJoinText($event: any) {
-    this.joinButton = $event.type == 'mouseover' ? 'This joins a group' : 'JOIN';
+    this.joinButton = $event.type == 'mouseover' ? 'JOIN A GROUP' : 'JOIN';
   }
 
   changeQuickText($event: any) {
-    this.quickButton = $event.type == 'mouseover' ? 'This joins a group quickly' : 'QUICK';
+    this.quickButton = $event.type == 'mouseover' ? 'CREATE TEMPORARY GROUP' : 'QUICK'; //TODO: CHRISTOPHE: set fontsize smaller 
   }
   constructor() {}
 
