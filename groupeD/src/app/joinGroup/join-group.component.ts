@@ -24,7 +24,6 @@ export class JoinGroupComponent implements OnInit {
   onJoinGroup(myCode: string) {
     if (!this.checkIfCodeIsValid(myCode))
     {
-      console.log('Unvalid')
       this._flashMessage.show('Only 5 numbers are valid!')
       setTimeout(function() { window.location.reload()}, 1500)
       return;
