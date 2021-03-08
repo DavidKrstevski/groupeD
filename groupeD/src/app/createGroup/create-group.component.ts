@@ -32,7 +32,8 @@ export class CreateGroupComponent implements OnInit {
     const groupdata = {
       gname: myGroupName
     }
-    this.AuthService.createGroup(groupdata).subscribe(data => {
+    
+    this.AuthService.createGroup(myGroupName).subscribe(data => {
       if (data.body as any === false){
         this._flashMessage.show('Something went wrong', {
         timeout: 1500});   
@@ -40,7 +41,6 @@ export class CreateGroupComponent implements OnInit {
         return;
       }
       this._flashMessage.show('Group created')  
-      console.log('worked')
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.groupname = myGroupName;
         this.router.navigate(['groups']);   

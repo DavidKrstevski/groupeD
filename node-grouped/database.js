@@ -191,6 +191,7 @@ async function deleteTeam(groupCode, teamName){
 
 //Update
 async function addGroupToPerson(personId, groupCode){
+    console.log(personId)
     try{
         let person = await getPersonById(personId);
         let groups = [];

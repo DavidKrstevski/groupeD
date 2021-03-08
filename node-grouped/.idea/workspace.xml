@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d74ce37-12e0-466d-bf34-0be12abb0aaa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/team.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/createGroup/create-group.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/createGroup/create-group.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/group.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/group.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

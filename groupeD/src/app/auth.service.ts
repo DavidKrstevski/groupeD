@@ -24,12 +24,17 @@ export class AuthService {
     }).pipe(map((res: HttpResponse<JSON>) => res));
   }
 
-  createGroup(groupname: any) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+  createGroup(groupName: any) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Headers', 'Content-Type')
+      // .append('Access-Control-Allow-Methods', 'GET')
+      // .append('Access-Control-Allow-Origin', 'http://localhost:4200');
 
-    return this.http.post<any>('http://localhost:3000/group/create', groupname, {
+    console.log(groupName)
+    return this.http.post<any>('http://localhost:3000/group/create', { groupName }, {
       headers: headers,
+      withCredentials: true,
       observe: 'response'
     }).pipe(map((res: HttpResponse<JSON>) => res));
   }
