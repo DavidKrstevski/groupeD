@@ -40,6 +40,7 @@ export class CreateGroupComponent implements OnInit {
         return;
       }
       this._flashMessage.show('Group created')  
+      console.log('worked')
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.groupname = myGroupName;
         this.router.navigate(['groups']);   

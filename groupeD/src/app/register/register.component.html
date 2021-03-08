@@ -1,4 +1,5 @@
 <body>
+    <a class="home" href="home">GROUPED</a>
     <form class="box" action="register.component.html" method="post">
         <h1>Create a <span>Groupe<span>D</span></span> Account</h1>
         
@@ -32,6 +33,11 @@
             maxlength="20"
             autocomplete="off"
             >
+            <div class="haveAccount">
+                <a href="login">
+                    Already have an account?
+                </a>
+            </div>
         <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)">Submit</a>
     </form>
     

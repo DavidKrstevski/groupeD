@@ -28,7 +28,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post<any>('http://localhost:3000/user/create', groupname, {
+    return this.http.post<any>('http://localhost:3000/group/create', groupname, {
       headers: headers,
       observe: 'response'
     }).pipe(map((res: HttpResponse<JSON>) => res));
@@ -38,7 +38,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post<any>('http://localhost:3000/user/join', user, {
+    return this.http.post<any>('http://localhost:3000/group/join', user, {
       headers: headers,
       observe: 'response'
     }).pipe(map((res: HttpResponse<JSON>) => res));

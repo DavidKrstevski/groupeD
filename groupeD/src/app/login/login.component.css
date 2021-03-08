@@ -90,3 +90,8 @@ body {
     border-color: white;
     width: 230px;
 }
+
+.home {
+    font-size: 50px;
+    color: white;
+}

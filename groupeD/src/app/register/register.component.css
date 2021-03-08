@@ -97,3 +97,12 @@ body {
     border-color: white;
     width: 230px;
 }
+
+.haveAccount {
+    color: white;
+}
+
+.home {
+    font-size: 50px;
+    color: white;
+}
