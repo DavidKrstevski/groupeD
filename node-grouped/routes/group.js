@@ -3,7 +3,6 @@ const router = express.Router();
 const database = require('../database');
 
 router.post('/create',(req,res,next) => {
-    console.log(req.cookies)
     let newUserList = [];
     newUserList.push(req.cookies.userId);
     _createNewGroupCode().then(codeResult => {

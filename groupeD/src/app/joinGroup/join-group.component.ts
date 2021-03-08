@@ -28,7 +28,19 @@ export class JoinGroupComponent implements OnInit {
       setTimeout(function() { window.location.reload()}, 1500)
       return;
     }
-    this._flashMessage.show('Valid')
+
+    this.AuthService.joinGroup(myCode).subscribe(data => {
+      if (data.body as any === false){
+        this._flashMessage.show('Something went wrong', {
+        timeout: 1500});   
+        setTimeout(function() { window.location.reload()}, 1500)
+        return;
+      }
+      this._flashMessage.show('Joined group')  
+        this.AuthService.storeUserData((data as any).token, (data as any).user)
+        this.code = myCode;
+        this.router.navigate(['groups']);   
+    })    
     //this.router.navigate(['signedInIndex']);
   }
 

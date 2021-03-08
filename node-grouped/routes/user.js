@@ -21,9 +21,9 @@ router.post('/login',(req,res,next) => {
             res.send(false);
 
         res.cookie("userId", r._id, {httpOnly: true});
-        res.header("Access-Control-Allow-Origin", "*")
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.header("Access-Control-Allow-Credentials", "*")
+        // res.header("Access-Control-Allow-Origin", "*")
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // res.header("Access-Control-Allow-Credentials", "*")
 
         res.send(true);
     });
