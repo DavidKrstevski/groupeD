@@ -21,11 +21,11 @@ const personSchema = new Schema({
 });
 
 const groupSchema = new Schema({
-    groupName:{
+    groupName: {
         type: String,
         required:true
     },
-    groupCode:{
+    groupCode: {
         type: String,
         required:true
     },
@@ -37,14 +37,26 @@ const groupSchema = new Schema({
         type: [String],
         required: true
     },
-    teamsList: {
-        type: [[String]],
-        required: true
+    teamList: {
+        type: [String],
+        required: false
     }
 });
 
+const teamSchema = new Schema({
+    teamName: {
+        type: String,
+        required: true
+    },
+    userList: {
+        type: [String],
+        required: false
+    }
+})
+
 const Person = mongoose.model('Person', personSchema);
 const Group = mongoose.model('Group', groupSchema);
+const Team = mongoose.model('Team', teamSchema);
 
 async function connect(){
     try{
@@ -70,10 +82,29 @@ async function savePerson(personData){
     }
 }
 
+//Create
 async function createGroup(groupData){
     try{
         let newGroup = new Group(groupData);
         await newGroup.save();
+    }catch (e) {
+        console.log("Failed to save: " + e);
+    }
+}
+
+async function createTeam(groupCode, teamName){
+    try{
+        let teamData = {
+            teamName: teamName,
+            userList: []
+        }
+        let newTeam = new Team(teamData);
+        let teamResult = await newTeam.save();
+
+        let group = await getGroupByCode(groupCode);
+        group.teamList.push(teamResult._id);
+        let groupResult = await Group.updateOne({groupCode:groupCode}, {teamList:group.teamList});
+        return groupResult.nModified === 1;
     }catch (e) {
         console.log("Failed to save: " + e);
     }
@@ -120,6 +151,13 @@ async function getGroupByCode(groupCode){
         console.log("Failed to find: " + e);
     }
 }
+async function getTeamById(teamId){
+    try{
+        return await Team.findOne({_id: teamId});
+    }catch (e) {
+        console.log("Failed to find: " + e);
+    }
+}
 
 //Delete
 async function deletePersonById(personId){
@@ -130,6 +168,24 @@ async function deletePersonById(personId){
         return true;
     }catch (e) {
         console.log("Failed to delete: " + e);
+    }
+}
+
+async function deleteTeam(groupCode, teamName){
+    try{
+        let group = await getGroupByCode(groupCode);
+
+        for (let i = 0; i < group.teamList.length; i++){
+            let team = await getTeamById(group.teamList[i]);
+            if (team.teamName === teamName){
+                group.teamList.remove(team._id);
+                let groupResult = await Group.updateOne({groupCode:groupCode}, {teamList:group.teamList});
+                let result = await Team.deleteOne({_id:team._id});
+                return groupResult.nModified === 1 && result.deletedCount === 1;
+            }
+        }
+    }catch (e) {
+        console.log("Failed to save: " + e);
     }
 }
 
@@ -171,9 +227,9 @@ async function addPersonToGroup(groupCode, personId){
     }
 }
 
-async function addAdmin(groupCode, userName){
+async function addAdmin(groupCode, username){
     try {
-        let person = await getPersonByName(userName);
+        let person = await getPersonByName(username);
         let group = await getGroupByCode(groupCode);
         group.adminList.push(person._id);
         let result = await Group.updateOne({groupCode:groupCode}, {adminList:group.adminList});
@@ -183,14 +239,50 @@ async function addAdmin(groupCode, userName){
     }
 }
 
-async function kickUser(groupCode, userName){
+async function addUserToTeam(groupCode, teamName, username){
     try {
-        let person = await getPersonByName(userName);
+        let group = await getGroupByCode(groupCode);
+        let person = await getPersonByName(username);
+
+        for (let i = 0; i < group.teamList.length; i++){
+            let team = await getTeamById(group.teamList[i]);
+            if (team.teamName === teamName){
+                team.userList.push(person._id);
+                let result = await Team.updateOne({_id:team._id}, {userList:team.userList});
+                return result.nModified === 1;
+            }
+        }
+    }catch (e) {
+        console.log("Failed to update: " + e);
+    }
+}
+
+async function kickUser(groupCode, username){
+    try {
+        let person = await getPersonByName(username);
         let group = await getGroupByCode(groupCode);
         group.userList.remove(person._id);
         let result = await Group.updateOne({groupCode:groupCode}, {userList:group.userList});
         return result.nModified === 1;
     }catch (e){
+        console.log("Failed to update: " + e);
+    }
+}
+
+async function deleteUserFromTeam(groupCode, teamName, username){
+    try {
+        let group = await getGroupByCode(groupCode);
+        let person = await getPersonByName(username);
+
+        for (let i = 0; i < group.teamList.length; i++){
+            let team = await getTeamById(group.teamList[i]);
+            if (team.teamName === teamName){
+                team.userList.remove(person._id);
+                let result = await Team.updateOne({_id:team._id}, {userList:team.userList});
+                return result.nModified === 1;
+            }
+        }
+    }catch (e) {
         console.log("Failed to update: " + e);
     }
 }
@@ -223,5 +315,9 @@ module.exports = {
     addPersonToGroup,
     addAdmin,
     kickUser,
-    isAdmin
+    isAdmin,
+    createTeam,
+    addUserToTeam,
+    deleteUserFromTeam,
+    deleteTeam
 }

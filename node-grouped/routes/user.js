@@ -34,4 +34,8 @@ router.post('/myGroups',(req,res,next) => {
     database.getPersonById(req.cookies.userId).then(r => res.send(r.groups))
 });
 
+router.post('/getUsername',(req,res,next) => {
+    database.getPersonById(req.cookies.userId).then(r => res.send(r.username))
+});
+
 module.exports = router;

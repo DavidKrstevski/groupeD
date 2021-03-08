@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const user = require('./routes/user');
 const group = require('./routes/group');
+const team = require('./routes/team');
 const database = require('./database');
 
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use('/user',user);
 app.use('/group',group);
+app.use('/team',team);
 
 app.get('/', (req,res) => {
     res.send('Invalid Endpoint');
