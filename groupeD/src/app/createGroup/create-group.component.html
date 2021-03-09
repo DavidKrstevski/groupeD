@@ -23,16 +23,22 @@
             </div>
         </nav>
         <div class="header">
-            <input 
-                type="text"
-                name="groupname"
-                required
-                ngModel
-                #groupname="ngModel" 
-                autocomplete="off"
-                maxlength="15"
-                placeholder="Group name: "
-                >                   
+
+            <div id="group_input_label">
+                <label>Group name:
+                    <input 
+                    type="text"
+                    name="groupname"
+                    required
+                    ngModel
+                    #groupname="ngModel" 
+                    autocomplete="off"
+                    maxlength="15"
+                    >     
+                </label>
+            </div>
+            
+            
             <h2>(this can be changed later on)</h2>
             <div class="group_button">
                 <a (click)="createGroup(groupname.value)">CREATE</a>
