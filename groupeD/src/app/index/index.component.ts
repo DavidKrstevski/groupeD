@@ -10,16 +10,8 @@ export class IndexComponent implements OnInit {
   joinButton = "JOIN"
   quickButton = "QUICK"
 
-  font = 11;
-
   changeCreateText($event: any) {
-    if ($event.type == 'mouseover'){
-      this.createButton = 'CREATE A GROUP'
-      this.font = 12;
-      return
-    }
-    this.createButton = 'CREATE'
-      this.font = 20;
+    this.createButton = $event.type == 'mouseover' ? 'CREATE A GROUP' : 'CREATE';
   }
 
   changeJoinText($event: any) {

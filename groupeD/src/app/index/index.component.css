@@ -269,6 +269,8 @@ nav {
 }
 
 .group_button a:hover {    
+    transition: all .0s ease-in-out;
+    font-size:90%;
     color: white;
     transform: scale(1.1);
     line-height: 32px;
