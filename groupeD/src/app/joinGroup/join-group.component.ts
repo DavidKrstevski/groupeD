@@ -40,7 +40,7 @@ export class JoinGroupComponent implements OnInit {
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.code = myCode;
         this.router.navigate(['groups']);   
-    })    
+    })
     //this.router.navigate(['signedInIndex']);
   }
 
