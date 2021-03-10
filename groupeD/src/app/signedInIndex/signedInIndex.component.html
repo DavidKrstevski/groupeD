@@ -2,33 +2,51 @@
     <head>
         <title>GroupeD</title>
         <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
     </head>
 
     <body>    
-        <div class="header">
+        <div id="header_background"></div>
+        <nav>
             <div class="inner_header">
                 <div class="logo_container">
                     <h1>
-                        <a ng href="signedInIndex">Groupe</a>
-                        <a><span>D</span></a>
+                        <a ng href="home">GROUPED</a>
                     </h1>
                 </div>
         
                 <ul class="navigation">
-                    <a href="profile"><li>My Groups</li></a>  
-                    <a (click)="onLogout()"><li>Log out</li></a>         
+                    <li><a href="profile">My Groups</a></li>
+                    <li><a (click)="onLogout()"><li>Log out</a></li>
                 </ul>
             </div>
+        </nav>
+        <div class="header">
+            <!--CREATE HEADER = "FASTED GROUPS ON THE WEB" idk,
+                darunter kleinerer header "all data is safe" ka, background bunt (waves? bubbles, some shit, NEHMETZ FADE?)-->
+            <div id="button_header">
+                <h1 data-text="FASTEST GROUPS ON THE WEB">FASTEST GROUPS ON THE WEB</h1>
+                <h2>all data is safe</h2>
+            </div>
+            <div class="group_button"> <!--TODO: CHRISTOPHE FIX THE BUTTONS-->
+                <a href="register" (mouseover)="changeCreateText($event)" (mouseout)="changeCreateText($event)">
+                    {{ createButton }}
+                </a>
+                <a href="register" (mouseover)="changeJoinText($event)" (mouseout)="changeJoinText($event)">
+                    {{ joinButton }}
+                </a>
+                <a href="quickGroup" (mouseover)="changeQuickText($event)" (mouseout)="changeQuickText($event)">
+                    {{ quickButton }}
+                </a>
+            </div>
         </div>
-        
-        <div class="group_button">
-            <a href="createGroup"><button title="Create a group">Create Group</button></a>
-            <a href="joinGroup"><button title="Join a group">Join Group</button></a>
-            <a href="quickGroup"><button title="Join a group quickly">Quick Group</button></a>
+        <div class="footer">
+            <a href="#" title="Email us">E-Mail</a>
         </div>
 
-        <footer>
+        <!-- <footer>
             <p>Created by Christophe Andunda, David Krstevski, Nicolas Nemeth, Alexander Sabani</p>
-        </footer>
+        </footer> -->
     </body>
 </html>
