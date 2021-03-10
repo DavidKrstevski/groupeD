@@ -200,8 +200,10 @@ async function addGroupToPerson(personId, groupCode){
 
         let result = await Person.updateOne({_id:personId}, {groups:groups});
         if(result.nModified === 0)
-            return false;
-        return true;
+            return null;
+
+        let group = await getGroupByCode(groupCode);
+        return group;
     }catch (e) {
         console.log("Failed to update: " + e);
     }
@@ -221,7 +223,9 @@ async function addPersonToGroup(groupCode, personId){
 
         persons.push(personId);
         let result = await Group.updateOne({groupCode:groupCode}, {userList:persons});
-        return result.nModified === 1;
+        if(result.nModified === 1)
+            return group;
+        return null;
     }catch (e) {
         console.log("Failed to update: " + e);
     }

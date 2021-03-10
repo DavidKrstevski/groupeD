@@ -17,11 +17,11 @@ router.post('/create',(req,res,next) => {
 });
 
 router.post('/join',(req,res,next) => {
-    database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => {
+    database.addGroupToPerson(req.cookies.userId, req.body.groupCode).then(r => {
         if(r)
-            database.addGroupToPerson(req.cookies.userId, req.body.groupCode).then(r => res.send(r));
+            database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => res.send(r));
         else
-            res.send(r)
+            res.send(r);
     });
 });
 
