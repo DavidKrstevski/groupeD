@@ -1,44 +1,66 @@
-<body>
-    <a class="home" href="home">GROUPED</a>
-    <form class="box" action="register.component.html" method="post">
-        <h1>Create a <span>Groupe<span>D</span></span> Account</h1>
+
+<html>
+    <head>
+        <title>GroupeD</title>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header_background"></div>
+        <nav>
+            <div class="inner_header">
+                <div class="logo_container">
+                    <h1>
+                        <a ng href="home">GROUPED</a>
+                    </h1>
+                </div>
         
-        <input 
-            type="text" 
-            name="username" 
-            ngModel 
-            required 
-            #username="ngModel" 
-            placeholder="Username"
-            maxlength="14"
-            autocomplete="off"
-            >           
-        <input 
-            type="password" 
-            name="password" 
-            ngModel 
-            required 
-            #password="ngModel" 
-            placeholder="Password"
-            maxlength="20"
-            autocomplete="off"
-            >
-        <input 
-            type="password" 
-            name="confirmPassword" 
-            ngModel 
-            required 
-            #confirmPassword="ngModel" 
-            placeholder="Confirm Password"
-            maxlength="20"
-            autocomplete="off"
-            >
-            <div class="haveAccount">
-                <a href="login">
-                    Already have an account?
-                </a>
+                <ul class="navigation">
+                    <li><a href="register">Sign up</a></li>      
+                    <li><a href="login">Log in</a></li>        
+                </ul>
             </div>
-        <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)">Submit</a>
-    </form>
-    
-</body>
+        </nav>
+        <form class="box" action="register.component.html" method="post">
+            <h1>CREATE ACCOUNT</h1>
+            
+            <input 
+                type="text" 
+                name="username" 
+                ngModel 
+                required 
+                #username="ngModel" 
+                placeholder="USERNAME"
+                maxlength="14"
+                autocomplete="off"
+                >           
+            <input 
+                type="password" 
+                name="password" 
+                ngModel 
+                required 
+                #password="ngModel" 
+                placeholder="PASSWORD"
+                maxlength="20"
+                autocomplete="off"
+                >
+            <input 
+                type="password" 
+                name="confirmPassword" 
+                ngModel 
+                required 
+                #confirmPassword="ngModel" 
+                placeholder="CONFIRM PASSWORD"
+                maxlength="20"
+                autocomplete="off"
+                >
+                <div class="haveAccount">
+                    <a href="login">
+                        Already have an account?
+                    </a>
+                </div>
+            <a class="register" (click)="onRegister(username.value, password.value, confirmPassword.value)">SUBMIT</a>
+        </form>
+    </body>
+</html>

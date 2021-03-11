@@ -1,7 +1,29 @@
-<body>
-    <a class="home" href="home">GROUPED</a>
+
+<html>
+    <head>
+        <title>GroupeD</title>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header_background"></div>
+        <nav>
+            <div class="inner_header">
+                <div class="logo_container">
+                    <h1>
+                        <a ng href="home">GROUPED</a>
+                    </h1>
+                </div>
+        
+                <ul class="navigation">
+                    <li><a href="register">Sign up</a></li>      
+                    <li><a href="login">Log in</a></li>        
+                </ul>
+            </div>
+        </nav>
     <form class="box" action="login.component.html" method="post">
-        <h1>Login</h1>
+        <h1>LOGIN</h1>
 
         <input 
             type="text" 
@@ -24,7 +46,8 @@
             maxlength="20"
             autocomplete="off"
             >
-        <a class="login" (click)="onLogin(username.value, password.value)">Submit</a>       
+        <a class="login" (click)="onLogin(username.value, password.value)">Submit</a>
     </form>
 
 </body>
+</html>
