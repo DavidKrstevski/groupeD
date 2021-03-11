@@ -23,6 +23,7 @@ app.use('/createGroup', express.static(html))
 app.use('/home', express.static(html))
 app.use('/group', express.static(html))
 app.use('/joinGroup', express.static(html))
+app.use('/**', express.static(html))
 
 app.use('/user',user);
 app.use('/group',group);

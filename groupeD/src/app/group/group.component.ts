@@ -12,6 +12,8 @@ export class GroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  
 }
