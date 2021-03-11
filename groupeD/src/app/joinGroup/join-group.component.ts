@@ -22,6 +22,9 @@ export class JoinGroupComponent implements OnInit {
   }
   
   onJoinGroup(myCode: string) {
+    if (myCode == "")
+      return;
+
     if (!this.checkIfCodeIsValid(myCode))
     {
       this._flashMessage.show('Only 5 numbers are valid!')

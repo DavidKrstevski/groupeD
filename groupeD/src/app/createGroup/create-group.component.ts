@@ -23,7 +23,9 @@ export class CreateGroupComponent implements OnInit {
     }
 
   createGroup(myGroupName: string) {
-    console.log(myGroupName)
+    if (myGroupName == "")
+      return;
+      
     if (!this.checkIfCodeIsValid(myGroupName)){
       setTimeout(function() { window.location.reload()}, 1500)
       return;

@@ -1,5 +1,5 @@
 * {
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -142,6 +142,7 @@ nav {
 
 .navigation li {
     height: 100%;
+    cursor: pointer;
 }
 
 .navigation a {

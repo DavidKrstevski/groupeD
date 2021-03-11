@@ -22,7 +22,10 @@ export class RegisterComponent implements OnInit {
     
   }
 
-  async onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
+  onRegister(myUsername: string, myPassword: string, myConfirmPassword: string) {
+    if (myUsername == "" && myPassword == "" && myConfirmPassword == "")
+      return;
+
     if (myUsername === "" || myConfirmPassword === "" || myPassword === ""){
       this._flashMessage.show('One or more fields were empty')
       setTimeout(function() { window.location.reload()}, 1500)

@@ -1,5 +1,5 @@
 * {
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -143,6 +143,7 @@ nav {
 
 .navigation li {
     height: 100%;
+    cursor: pointer;
 }
 
 .navigation a {
@@ -249,7 +250,7 @@ nav {
     outline: none;
     transition: ease-out 0.15s;
     */
-
+    cursor: pointer;
     min-width: 250px;;
     font-family: 'Bahnschrift SemiBold';
     /*background: #0000004d;*/
@@ -262,6 +263,7 @@ nav {
     text-align: center;
     line-height: 37px;
     text-shadow: 0px 1px 2px #00000065;
+    cursor: pointer;
 
     border-radius: 50px;
     /*border: 2px solid #ffffff;*/

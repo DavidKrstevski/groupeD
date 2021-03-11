@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(myUsername: string, myPassword: string) {
+    if (myUsername == "" && myPassword == "")
+      return;
+
     if (myUsername === "" || myPassword === ""){
       this._flashMessage.show('One or two fields were empty')
       setTimeout(function() { window.location.reload()}, 1500)
