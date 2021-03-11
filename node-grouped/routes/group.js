@@ -12,14 +12,22 @@ router.post('/create',(req,res,next) => {
             userList: newUserList,
             adminList: newUserList
         };
-        database.createGroup(newGroup).then(r => database.addGroupToPerson(req.cookies.userId, codeResult).then(r => res.send(r)));
+        database.createGroup(newGroup).then(r => database.addGroupToPerson(req.cookies.userId, codeResult).then(r => {
+            res.clearCookie("groupCode");
+            res.cookie("groupCode", codeResult, {httpOnly: true});
+            res.send(r)
+        }));
     });
 });
 
 router.post('/join',(req,res,next) => {
     database.addGroupToPerson(req.cookies.userId, req.body.groupCode).then(r => {
         if(r)
-            database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => res.send(r));
+            database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => {
+                res.clearCookie("groupCode");
+                res.cookie("groupCode", codeResult, {httpOnly: true});
+                res.send(r)
+            });
         else
             res.send(r);
     });
@@ -39,6 +47,12 @@ router.post('/kickUser',(req,res,next) => {
 
 router.post('/isAdmin',(req,res,next) => {
     database.isAdmin(req.body.groupCode, req.cookies.userId).then(r => {
+        res.send(r);
+    })
+});
+
+router.post('/getGroup',(req,res,next) => {
+    database.getGroupByCode(req.cookies.groupCode).then(r => {
         res.send(r);
     })
 });
