@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   }
 
   changeQuickText($event: any) {
-    this.quickButton = $event.type == 'mouseover' ? 'CREATE TEMPORARY GROUP' : 'QUICK'; //TODO: CHRISTOPHE: set fontsize smaller 
+    this.quickButton = $event.type == 'mouseover' ? 'CREATE TEMPORARY GROUP' : 'QUICK';
   }
   constructor() {}
 

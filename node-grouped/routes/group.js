@@ -25,7 +25,7 @@ router.post('/join',(req,res,next) => {
         if(r)
             database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => {
                 res.clearCookie("groupCode");
-                res.cookie("groupCode", codeResult, {httpOnly: true});
+                res.cookie("groupCode", req.body.groupCode, {httpOnly: true});
                 res.send(r)
             });
         else

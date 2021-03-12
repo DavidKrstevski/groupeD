@@ -25,7 +25,7 @@ export class CreateGroupComponent implements OnInit {
   createGroup(myGroupName: string) {
     if (myGroupName == "")
       return;
-      
+
     if (!this.checkIfCodeIsValid(myGroupName)){
       setTimeout(function() { window.location.reload()}, 1500)
       return;
@@ -45,7 +45,7 @@ export class CreateGroupComponent implements OnInit {
       this._flashMessage.show('Group created')  
         this.AuthService.storeUserData((data as any).token, (data as any).user)
         this.groupname = myGroupName;
-        this.router.navigate(['groups']);   
+        this.router.navigate(['group']);   
     })
   }
 

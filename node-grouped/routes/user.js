@@ -42,4 +42,8 @@ router.post("/getUsername",(req,res,next) => {
     database.getPersonById(req.cookies.userId).then(r => res.send(r.username))
 });
 
+router.post("/getUsernameWithoutCookie",(req,res,next) => {
+    database.getPersonById(req.body._id).then(r => res.send( { username : r.username }))
+});
+
 module.exports = router;

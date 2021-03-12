@@ -3,8 +3,6 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { DataService } from '../data.service'
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

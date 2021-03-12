@@ -1,3 +1,9 @@
 <body>
 <h1>Group</h1>
+<h1  class="groupName">{{ gname }}</h1>
+<h2 class="groupCode">{{ gcode }}</h2>
+
+<ul>
+    <li *ngFor="let user of users">{{ user }}</li>
+</ul>
 </body>

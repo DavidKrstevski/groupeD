@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -29,6 +29,29 @@ export class AuthService {
       .append('Content-Type', 'application/json')
 
     return this.http.post<any>('http://localhost:3000/group/create', { groupName }, {
+      headers: headers,
+      withCredentials: true,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
+  getUsernameWithoutCookie(_id: any) {
+    console.log(_id)
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+
+    return this.http.post<any>('http://localhost:3000/user/getUsernameWithoutCookie', { _id }, {
+      headers: headers,
+      withCredentials: true,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
+  getGroup() {
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+
+    return this.http.post<any>('http://localhost:3000/group/getGroup', {
       headers: headers,
       withCredentials: true,
       observe: 'response'
