@@ -34,25 +34,31 @@ router.post('/join',(req,res,next) => {
 });
 
 router.post('/addAdmin',(req,res,next) => {
-    database.addAdmin(req.body.groupCode, req.body.userName).then(r => {
+    database.addAdmin(req.cookies.groupCode, req.body.userName).then(r => {
         res.send(r);
     })
 });
 
 router.post('/kickUser',(req,res,next) => {
-    database.kickUser(req.body.groupCode, req.body.userName).then(r => {
+    database.kickUser(req.cookies.groupCode, req.body.userName).then(r => {
         res.send(r);
     })
 });
 
 router.post('/isAdmin',(req,res,next) => {
-    database.isAdmin(req.body.groupCode, req.cookies.userId).then(r => {
+    database.isAdmin(req.cookies.groupCode, req.cookies.userId).then(r => {
         res.send(r);
     })
 });
 
 router.post('/getGroup',(req,res,next) => {
     database.getGroupByCode(req.cookies.groupCode).then(r => {
+        res.send(r);
+    })
+});
+
+router.put('/changeName',(req,res,next) => {
+    database.changeGroupName(req.cookies.groupCode, req.body.newName).then(r => {
         res.send(r);
     })
 });

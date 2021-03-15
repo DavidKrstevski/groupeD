@@ -286,8 +286,35 @@ async function deleteUserFromTeam(groupCode, teamName, username){
     }
 }
 
-//Checking
+async function changeGroupName(groupCode, newName) {
+    try {
+        let group = await getGroupByCode(groupCode);
+        let result = await Group.updateOne({_id:group._id}, {groupName:newName});
+        return result.nModified === 1;
+    }
+    catch (e) {
+        console.log("Failed to update: " + e);
+    }
+}
 
+async function changeTeamName(groupCode, teamName, newName) {
+    try {
+        let group = await getGroupByCode(groupCode);
+
+        for (let i = 0; i < group.teamList.length; i++){
+            let team = await getTeamById(group.teamList[i]);
+            if (team.teamName === teamName){
+                let result = await Team.updateOne({_id:team._id}, {teamName:newName});
+                return result.nModified === 1;
+            }
+        }
+    }
+    catch (e) {
+        console.log("Failed to update: " + e);
+    }
+}
+
+//Checking
 async function isAdmin(groupCode, personId){
     let group = await getGroupByCode(groupCode);
     return group.adminList.includes(personId);
@@ -318,5 +345,7 @@ module.exports = {
     createTeam,
     addUserToTeam,
     deleteUserFromTeam,
-    deleteTeam
+    deleteTeam,
+    changeGroupName,
+    changeTeamName
 }
