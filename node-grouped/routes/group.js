@@ -1,35 +1,48 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../database');
+const jwt = require('jsonwebtoken');
 
 router.post('/create',(req,res,next) => {
-    let newUserList = [];
-    newUserList.push(req.cookies.userId);
-    _createNewGroupCode().then(codeResult => {
-        let newGroup = {
-            groupName: req.body.groupName,
-            groupCode: codeResult,
-            userList: newUserList,
-            adminList: newUserList
-        };
-        database.createGroup(newGroup).then(r => database.addGroupToPerson(req.cookies.userId, codeResult).then(r => {
-            res.clearCookie("groupCode");
-            res.cookie("groupCode", codeResult, {httpOnly: true});
-            res.send(r)
-        }));
+    jwt.verify(req.cookies.userId, process.env.ACCESS_TOKEN_SECRET, function(err, decoded) {
+        if (err){
+            res.send(false);
+        }
+
+        let newUserList = [];
+        newUserList.push(decoded);
+        _createNewGroupCode().then(codeResult => {
+            let newGroup = {
+                groupName: req.body.groupName,
+                groupCode: codeResult,
+                userList: newUserList,
+                adminList: newUserList
+            };
+            database.createGroup(newGroup).then(r => database.addGroupToPerson(decoded, codeResult).then(r => {
+                res.clearCookie("groupCode");
+                res.cookie("groupCode", codeResult, {httpOnly: true});
+                res.send(r)
+            }));
+        });
     });
 });
 
 router.post('/join',(req,res,next) => {
-    database.addGroupToPerson(req.cookies.userId, req.body.groupCode).then(r => {
-        if(r)
-            database.addPersonToGroup(req.body.groupCode, req.cookies.userId).then(r => {
-                res.clearCookie("groupCode");
-                res.cookie("groupCode", req.body.groupCode, {httpOnly: true});
-                res.send(r)
-            });
-        else
-            res.send(r);
+    jwt.verify(req.cookies.userId, process.env.ACCESS_TOKEN_SECRET, function(err, decoded) {
+        if (err){
+            res.send(false);
+        }
+
+        database.addGroupToPerson(decoded, req.body.groupCode).then(r => {
+            if(r)
+                database.addPersonToGroup(req.body.groupCode, decoded).then(r => {
+                    res.clearCookie("groupCode");
+                    res.cookie("groupCode", req.body.groupCode, {httpOnly: true});
+                    res.send(r)
+                });
+            else
+                res.send(r);
+        });
     });
 });
 
@@ -46,9 +59,15 @@ router.post('/kickUser',(req,res,next) => {
 });
 
 router.post('/isAdmin',(req,res,next) => {
-    database.isAdmin(req.cookies.groupCode, req.cookies.userId).then(r => {
-        res.send(r);
-    })
+    jwt.verify(req.cookies.userId, process.env.ACCESS_TOKEN_SECRET, function(err, decoded) {
+        if (err){
+            res.send(false);
+        }
+
+        database.isAdmin(req.cookies.groupCode, decoded).then(r => {
+            res.send(r);
+        })
+    });
 });
 
 router.post('/getGroup',(req,res,next) => {
