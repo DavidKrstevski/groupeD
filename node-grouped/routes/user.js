@@ -33,6 +33,7 @@ router.post("/login",(req,res,next) => {
 
 router.post("/logout",(req,res,next) => {
     res.clearCookie("userId");
+    res.clearCookie("groupCode");
     res.send(true);
 });
 

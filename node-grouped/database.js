@@ -316,8 +316,12 @@ async function changeTeamName(groupCode, teamName, newName) {
 
 //Checking
 async function isAdmin(groupCode, personId){
-    let group = await getGroupByCode(groupCode);
-    return group.adminList.includes(personId);
+    try {
+        let group = await getGroupByCode(groupCode);
+        return group.adminList.includes(personId);
+    }catch (e) {
+        console.log("Failed to check: " + e);
+    }
 }
 
 async function _hash(password){
