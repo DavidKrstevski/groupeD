@@ -196,6 +196,10 @@ async function addGroupToPerson(personId, groupCode){
         let groups = [];
         if(person.groups !== null)
             groups = person.groups;
+
+        if (groups.includes(groupCode))
+            return false;
+
         groups.push(groupCode);
 
         let result = await Person.updateOne({_id:personId}, {groups:groups});

@@ -20,16 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d74ce37-12e0-466d-bf34-0be12abb0aaa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/group/group.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../groupeD/src/app/myGroups/myGroups.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist/groupeD/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/groupeD/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist/groupeD/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/groupeD/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist/groupeD/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/groupeD/vendor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +114,7 @@
       <workItem from="1615892034360" duration="530000" />
       <workItem from="1615898576877" duration="2334000" />
       <workItem from="1615979763515" duration="1723000" />
+      <workItem from="1616589737251" duration="631000" />
     </task>
     <servers />
   </component>
