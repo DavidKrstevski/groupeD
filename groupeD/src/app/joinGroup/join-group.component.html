@@ -1,27 +1,41 @@
-<body>
-    <div class="header">
-        <div class="inner_header">
-            <div class="logo_container">
-                <h1>                                                                    
-                    <a href="signedInIndex">Groupe</a>
-                    <a><span>D</span></a>
-                </h1>
+<html>
+    <head>
+        <title>GroupeD</title>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>    
+        <div id="header_background"></div>
+        <nav>
+            <div class="inner_header">
+                <div class="logo_container">
+                    <h1>
+                        <a ng href="signedInIndex">GROUPED</a>
+                    </h1>
+                </div>
+        
+                <ul class="navigation">
+                    <li><a href="profile">My Groups</a></li> 
+                    <li><a (click)="onLogout()">Log out</a></li>        
+                </ul>
             </div>
-        </div>
-    </div>
-    <h1 class="joinGroup">Join Group</h1>
-    <form class="box" action="register.component.html" method="post">
-        <input 
-        type="text"
-        name="code"
-        required
-        ngModel
-        #code="ngModel" 
-        autocomplete="off"
-        maxlength="5"
-        placeholder="Enter Group Code"
-        autocorrect="off"
-        >       
-    </form>
-    <a class="joinbtn" (click)="onJoinGroup(code.value)">Join Group</a> 
-</body>
+        </nav>
+        <h1 class="joinGroup">Join Group</h1>
+        <form class="box" action="register.component.html" method="post">
+            <input 
+            type="text"
+            name="code"
+            required
+            ngModel
+            #code="ngModel" 
+            autocomplete="off"
+            maxlength="5"
+            placeholder="Enter Group Code"
+            autocorrect="off"
+            >       
+        </form>
+        <a class="joinbtn" (click)="onJoinGroup(code.value)">Join Group</a> 
+    </body>
+</html>

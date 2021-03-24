@@ -49,4 +49,11 @@ export class ProfileComponent implements OnInit {
       })
     })
   }
+  
+  onLogout() {
+    this.AuthService.logout();
+    this._flashMessage.show("You are logged out", { timeout: 5000 });
+    this.router.navigate(['home']);
+    return false;
+  }
 }
