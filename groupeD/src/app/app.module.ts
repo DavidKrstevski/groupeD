@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './myGroups/myGroups.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
 import { GroupComponent } from './group/group.component';
 

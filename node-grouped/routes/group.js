@@ -114,6 +114,12 @@ router.put('/changeName',(req,res,next) => {
     });
 });
 
+router.post('/getGroupWithoutCookie',(req,res,next) => {
+    database.getGroupByCode(req.body.groupCode).then(r => {
+        res.send(r);
+    })
+});
+
 async function _createNewGroupCode(){
     let code = _getRandomInt(10000,100000);
     let group = await database.getGroupByCode(code);

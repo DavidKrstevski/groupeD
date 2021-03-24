@@ -11,7 +11,7 @@ import { JoinGroupComponent } from './joinGroup/join-group.component';
 import { QuickGroupComponent } from './quickGroup/quick-group.component';
 
 import { IndexComponent } from './index/index.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './myGroups/myGroups.component';
 import { SignedInIndexComponent } from './signedInIndex/signedInIndex.component';
 import { GroupComponent } from './group/group.component';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'home', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'myGroups', component: ProfileComponent },
   { path: 'createGroup', component: CreateGroupComponent },
   { path: 'joinGroup', component: JoinGroupComponent },
   { path: 'quickGroup', component: QuickGroupComponent },

@@ -32,21 +32,18 @@ export class GroupComponent implements OnInit {
         setTimeout(function() { window.location.reload()}, 1500)
         this.router.navigate(["signedInIndex"])
       }
-      console.log(data)
       this.gname = (data as any).groupName;
       this.gcode = (data as any).groupCode;
       
       for (let i = 0; i < (data as any).userList.length; i++) {
         this.users.push(await this.getName((data as any).userList[i]))
       }
-      console.log(this.users)
     })
     
   }
   async getName(nameAsID: string): Promise<string> {
     return new Promise(resolve => {
       this.AuthService2.getUsernameWithoutCookie(nameAsID).subscribe(name => {
-        console.log((name as any).body.username)
         if (name as any === null){
           this._flashMessage.show('Was unable to load data')
           setTimeout(function() { window.location.reload()}, 1500)

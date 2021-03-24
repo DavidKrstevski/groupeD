@@ -58,6 +58,17 @@ export class AuthService {
     }).pipe(map((res: HttpResponse<JSON>) => res));
   }
 
+  getGroupWithoutCookie(groupCode: any) {
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+
+    return this.http.post<any>('http://localhost:3000/group/getGroupWithoutCookie', { groupCode }, {
+      headers: headers,
+      withCredentials: true,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
   joinGroup(groupCode: any) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -73,6 +84,16 @@ export class AuthService {
     headers.append('Contet-Type', 'application/json');
 
     return this.http.post<any>('http://localhost:3000/user/login', user, {
+      headers: headers,
+      observe: 'response'
+    }).pipe(map((res: HttpResponse<JSON>) => res));
+  }
+
+  getAllGroups() {
+    let headers = new HttpHeaders();
+    headers.append('Contet-Type', 'application/json');
+
+    return this.http.post<any>('http://localhost:3000/user/myGroups', {
       headers: headers,
       observe: 'response'
     }).pipe(map((res: HttpResponse<JSON>) => res));
